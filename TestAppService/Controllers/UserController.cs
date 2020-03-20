@@ -4,6 +4,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
 using TestAppService.Models;
+using System.Web.Security;
+using System.Web;
 
 namespace TestAppService.Controllers
 {
@@ -66,15 +68,88 @@ namespace TestAppService.Controllers
             ViewBag.Status = Status;
             return View(user);
         }
-        //Verify Email
+        //Verify Account
 
-        //Verify Email LINK
+        [HttpGet]
+        public ActionResult VerifyAccount(string id)
+    {
+        bool Status = false;
+        using (MyDatabaseEntities dc = new MyDatabaseEntities())
+        {
+            dc.Configuration.ValidateOnSaveEnabled = false; // This line I have added hewe to avoid
+                                                            // Confirm password does not mach issue on save changes 
+            var v = dc.User.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+            if (v != null)
+            {
+                v.IsEmailVerified = true;
+                dc.SaveChanges();
+                Status = true;
+            }
+            else
+            {
+                ViewBag.Message = "Invlid Request";
+            }
+            ViewBag.Status = Status;
+            return View();
+        }
+    }
 
         //Login
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
 
         //Login POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(UserLogin login, string ReturnUrl)
+        {
+            string message = "";
+            using (MyDatabaseEntities dc = new MyDatabaseEntities())
+            {
+                var v = dc.User.Where(a => a.EmailID == login.EmailID).FirstOrDefault();
+                if(v !=null)
+                {
+                    if (string.Compare(Crypto.Hash(login.Password),v.Password)==0)
+                    {
+                        int timeout = login.RememberMe ? 525600 : 20; //525600min = 1 year
+                        var ticket = new FormsAuthenticationTicket(login.EmailID, login.RememberMe, timeout);
+                        string encrypted = FormsAuthentication.Encrypt(ticket);
+                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                        cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                        cookie.HttpOnly = true;
+                        Response.Cookies.Add(cookie);
+
+                        if (Url.IsLocalUrl(ReturnUrl))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    else
+                    {
+                        message = "Invalid credential provided";
+                    }
+                }
+            }
+
+                ViewBag.Message = message;
+            return View();
+        }
 
         //Logout
+        [Authorize]
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "User");
+        }
 
         [NonAction]
         public bool IsEmailExist(string emailID)
@@ -95,7 +170,7 @@ namespace TestAppService.Controllers
 
              string url = scheme +"://"+host+
              */
-            var verifyUrl = "/User/VerifyAccount" + activationCode;
+            var verifyUrl = "/User/VerifyAccount/" + activationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
             var fromEmail = new MailAddress("TestASP.NETService@gmail.com", "Luk Test");
