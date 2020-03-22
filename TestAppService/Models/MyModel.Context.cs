@@ -25,6 +25,11 @@ namespace TestAppService.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Advertisment> Advertisment { get; set; }
+        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Service_Price> Service_Price { get; set; }
+        public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

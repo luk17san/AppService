@@ -1,5 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MyDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Advertisment">
+    <Key>
+      <PropertyRef Name="Ad_ID" />
+    </Key>
+    <Property Name="Ad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ad_Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ad_AddDataTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Ad_Price" Type="float" />
+    <Property Name="Ad_Services" Type="int" />
+    <Property Name="Ad_Status" Type="int" />
+    <Property Name="Ad_Location" Type="int" />
+    <Property Name="Ad_Questions" Type="int" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Category_ID" />
+    </Key>
+    <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Service_Price">
+    <Key>
+      <PropertyRef Name="Service_Price_ID" />
+    </Key>
+    <Property Name="Service_Price_ID" Type="int" Nullable="false" />
+    <Property Name="Price_ID" Type="int" />
+    <Property Name="Measurment_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Service_ID" />
+    </Key>
+    <Property Name="Service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Service_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Service_Category" Type="int" />
+    <Property Name="Service_Price" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserID" />
@@ -14,6 +62,11 @@
     <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityContainer Name="MyDatabaseModelStoreContainer">
+    <EntitySet Name="Advertisment" EntityType="Self.Advertisment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service_Price" EntityType="Self.Service_Price" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
