@@ -17,16 +17,16 @@ namespace TestAppService.Models
     {
             [Display(Name="First Name")]
             [Required(AllowEmptyStrings =false,ErrorMessage ="First name required")]
-            public string FirstName { get; set; }
+            public string First_Name { get; set; }
 
             [Display(Name = "Last Name")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Last name required")]
-            public string LastName { get; set; }
+            public string Last_Name { get; set; }
 
             [Display(Name ="Email ID")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Last name required")]
             [DataType(DataType.EmailAddress)]
-            public string EmailID { get; set; }
+            public string Email_ID { get; set; }
 
             [Display(Name = "Date of birth")]
             [DataType(DataType.Date)]

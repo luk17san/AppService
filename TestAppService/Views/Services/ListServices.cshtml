@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TestAppService.Models.Services>
+
+@{
+    ViewBag.Title = "ListServices";
+}
+
+<h2>ListServices</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Service_Name)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service_Name)
+            </td>
+
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

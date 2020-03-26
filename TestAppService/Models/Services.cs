@@ -16,7 +16,12 @@ namespace TestAppService.Models
     {
         public int Service_ID { get; set; }
         public string Service_Name { get; set; }
-        public Nullable<int> Service_Category { get; set; }
-        public Nullable<int> Service_Price { get; set; }
+        public Nullable<int> Service_Category_ID { get; set; }
+        public Nullable<double> Service_Price { get; set; }
+        public Nullable<int> Service_PMeasurment_ID { get; set; }
+    
+        public virtual Ad_Services Ad_Services { get; set; }
+        public virtual Categories Categories { get; set; }
+        public virtual Price_Measurment Price_Measurment { get; set; }
     }
 }

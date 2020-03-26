@@ -29,7 +29,7 @@ namespace TestAppService.Controllers
             if (ModelState.IsValid)
             {
                 #region //Email is already Exist
-                var isExist = IsEmailExist(user.EmailID);
+                var isExist = IsEmailExist(user.Email_ID);
                 if (isExist)
                 {
                     ModelState.AddModelError("EmailExist", "Email already exist");
@@ -46,16 +46,16 @@ namespace TestAppService.Controllers
                 user.IsEmailVerified = false;
 
                 #region // Save to Database
-                using (MyDatabaseEntities dc = new MyDatabaseEntities())
+                using (DBServiceEntities dc = new DBServiceEntities())
                 {
                     dc.User.Add(user);
                     dc.SaveChanges();
 
                     //Send Email to User
 
-                    SendVerificationLinkEmail(user.EmailID, user.ActivationCode.ToString());
+                    SendVerificationLinkEmail(user.Email_ID, user.ActivationCode.ToString());
                     message = "Registrarion successfully done. Account activation link" +
-                        "has been sent to your email id:" + user.EmailID;
+                        "has been sent to your email id:" + user.Email_ID;
                     Status = true;
                     #endregion
                 }
@@ -74,7 +74,7 @@ namespace TestAppService.Controllers
         public ActionResult VerifyAccount(string id)
     {
         bool Status = false;
-        using (MyDatabaseEntities dc = new MyDatabaseEntities())
+        using (DBServiceEntities dc = new DBServiceEntities())
         {
             dc.Configuration.ValidateOnSaveEnabled = false; // This line I have added hewe to avoid
                                                             // Confirm password does not mach issue on save changes 
@@ -107,15 +107,15 @@ namespace TestAppService.Controllers
         public ActionResult Login(UserLogin login, string ReturnUrl)
         {
             string message = "";
-            using (MyDatabaseEntities dc = new MyDatabaseEntities())
+            using (DBServiceEntities dc = new DBServiceEntities())
             {
-                var v = dc.User.Where(a => a.EmailID == login.EmailID).FirstOrDefault();
+                var v = dc.User.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
                 if(v !=null)
                 {
                     if (string.Compare(Crypto.Hash(login.Password),v.Password)==0)
                     {
                         int timeout = login.RememberMe ? 525600 : 20; //525600min = 1 year
-                        var ticket = new FormsAuthenticationTicket(login.EmailID, login.RememberMe, timeout);
+                        var ticket = new FormsAuthenticationTicket(login.Email_ID, login.RememberMe, timeout);
                         string encrypted = FormsAuthentication.Encrypt(ticket);
                         var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
                         cookie.Expires = DateTime.Now.AddMinutes(timeout);
@@ -154,9 +154,9 @@ namespace TestAppService.Controllers
         [NonAction]
         public bool IsEmailExist(string emailID)
         {
-            using (MyDatabaseEntities dc = new MyDatabaseEntities())
+            using (DBServiceEntities dc = new DBServiceEntities())
             {
-                var v = dc.User.Where(a => a.EmailID == emailID).FirstOrDefault();
+                var v = dc.User.Where(a => a.Email_ID == emailID).FirstOrDefault();
                 return v != null;
             }
         }

@@ -14,14 +14,28 @@ namespace TestAppService.Models
     
     public partial class Advertisment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Advertisment()
+        {
+            this.Ad_Services = new HashSet<Ad_Services>();
+            this.Questions = new HashSet<Questions>();
+        }
+    
         public int Ad_ID { get; set; }
         public string Ad_Name { get; set; }
         public string Ad_Description { get; set; }
         public byte[] Ad_AddDataTime { get; set; }
-        public Nullable<double> Ad_Price { get; set; }
-        public Nullable<int> Ad_Services { get; set; }
+        public Nullable<double> Ad_Budget { get; set; }
         public Nullable<int> Ad_Status { get; set; }
         public Nullable<int> Ad_Location { get; set; }
-        public Nullable<int> Ad_Questions { get; set; }
+        public Nullable<int> Ad_User_ID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ad_Services> Ad_Services { get; set; }
+        public virtual Location Location { get; set; }
+        public virtual Status Status { get; set; }
+        public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Questions> Questions { get; set; }
     }
 }

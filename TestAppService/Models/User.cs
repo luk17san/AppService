@@ -14,13 +14,22 @@ namespace TestAppService.Models
     
     public partial class User
     {
-        public int UserID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Advertisment = new HashSet<Advertisment>();
+        }
+    
+        public int User_ID { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
+        public string Email_ID { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Password { get; set; }
         public bool IsEmailVerified { get; set; }
         public System.Guid ActivationCode { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Advertisment> Advertisment { get; set; }
     }
 }

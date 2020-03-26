@@ -1,15 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MyDatabaseModelStoreContainer" CdmEntityContainer="MyDatabaseEntities">
+  <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="MyDatabaseEntities">
+    <EntitySetMapping Name="Ad_Services">
+      <EntityTypeMapping TypeName="DBServiceModel.Ad_Services">
+        <MappingFragment StoreEntitySet="Ad_Services">
+          <ScalarProperty Name="AdS_ID" ColumnName="AdS_ID" />
+          <ScalarProperty Name="AdS_Ad_ID" ColumnName="AdS_Ad_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Advertisment">
-      <EntityTypeMapping TypeName="MyDatabaseModel.Advertisment">
+      <EntityTypeMapping TypeName="DBServiceModel.Advertisment">
         <MappingFragment StoreEntitySet="Advertisment">
           <ScalarProperty Name="Ad_ID" ColumnName="Ad_ID" />
           <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
           <ScalarProperty Name="Ad_Description" ColumnName="Ad_Description" />
           <ScalarProperty Name="Ad_AddDataTime" ColumnName="Ad_AddDataTime" />
-          <ScalarProperty Name="Ad_Price" ColumnName="Ad_Price" />
-          <ScalarProperty Name="Ad_Services" ColumnName="Ad_Services" />
+          <ScalarProperty Name="Ad_Budget" ColumnName="Ad_Budget" />
           <ScalarProperty Name="Ad_Status" ColumnName="Ad_Status" />
           <ScalarProperty Name="Ad_Location" ColumnName="Ad_Location" />
           <ScalarProperty Name="Ad_Questions" ColumnName="Ad_Questions" />
@@ -17,34 +24,83 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="MyDatabaseModel.Categories">
+      <EntityTypeMapping TypeName="DBServiceModel.Categories">
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
           <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Location">
+      <EntityTypeMapping TypeName="DBServiceModel.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Addresses" ColumnName="Addresses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Price">
+      <EntityTypeMapping TypeName="DBServiceModel.Price">
+        <MappingFragment StoreEntitySet="Price">
+          <ScalarProperty Name="Price_ID" ColumnName="Price ID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Mesurment" ColumnName="Mesurment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="DBServiceModel.Questions">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+          <ScalarProperty Name="Q_Name" ColumnName="Q_Name" />
+          <ScalarProperty Name="Q_Category_ID" ColumnName="Q_Category_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions_Category">
+      <EntityTypeMapping TypeName="DBServiceModel.Questions_Category">
+        <MappingFragment StoreEntitySet="Questions_Category">
+          <ScalarProperty Name="QC_ID" ColumnName="QC_ID" />
+          <ScalarProperty Name="QC_Name" ColumnName="QC_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Service_Categories">
+      <EntityTypeMapping TypeName="DBServiceModel.Service_Categories">
+        <MappingFragment StoreEntitySet="Service_Categories">
+          <ScalarProperty Name="SC_ID" ColumnName="SC_ID" />
+          <ScalarProperty Name="SC_Service_ID" ColumnName="SC_Service_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Service_Price">
-      <EntityTypeMapping TypeName="MyDatabaseModel.Service_Price">
+      <EntityTypeMapping TypeName="DBServiceModel.Service_Price">
         <MappingFragment StoreEntitySet="Service_Price">
-          <ScalarProperty Name="Service_Price_ID" ColumnName="Service_Price_ID" />
-          <ScalarProperty Name="Price_ID" ColumnName="Price_ID" />
-          <ScalarProperty Name="Measurment_ID" ColumnName="Measurment_ID" />
+          <ScalarProperty Name="SP_ID" ColumnName="SP_ID" />
+          <ScalarProperty Name="SP_Service_ID" ColumnName="SP_Service_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Services">
-      <EntityTypeMapping TypeName="MyDatabaseModel.Services">
+      <EntityTypeMapping TypeName="DBServiceModel.Services">
         <MappingFragment StoreEntitySet="Services">
           <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
           <ScalarProperty Name="Service_Name" ColumnName="Service_Name" />
-          <ScalarProperty Name="Service_Category" ColumnName="Service_Category" />
-          <ScalarProperty Name="Service_Price" ColumnName="Service_Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="DBServiceModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+          <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="MyDatabaseModel.sysdiagrams">
+      <EntityTypeMapping TypeName="DBServiceModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -55,7 +111,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="User">
-      <EntityTypeMapping TypeName="MyDatabaseModel.User">
+      <EntityTypeMapping TypeName="DBServiceModel.User">
         <MappingFragment StoreEntitySet="User">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />

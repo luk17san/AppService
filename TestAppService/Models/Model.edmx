@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ad_Questions">
+          <Key>
+            <PropertyRef Name="AdQ_ID" />
+          </Key>
+          <Property Name="AdQ_ID" Type="int" Nullable="false" />
+          <Property Name="AdQ_Ad_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ad_Services">
+          <Key>
+            <PropertyRef Name="AdS_ID" />
+          </Key>
+          <Property Name="AdS_ID" Type="int" Nullable="false" />
+          <Property Name="AdS_Ad_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Advertisment">
+          <Key>
+            <PropertyRef Name="Ad_ID" />
+          </Key>
+          <Property Name="Ad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ad_Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ad_AddDataTime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Ad_Budget" Type="float" />
+          <Property Name="Ad_Status" Type="int" />
+          <Property Name="Ad_Location" Type="int" />
+          <Property Name="Ad_User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Category_ID" />
+          </Key>
+          <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postcode" Type="varchar" MaxLength="5" />
+          <Property Name="Addresses" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Price_Measurment">
+          <Key>
+            <PropertyRef Name="PM_ID" />
+          </Key>
+          <Property Name="PM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PM_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Q_Answers">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="A_Name" Type="nchar" MaxLength="100" />
+          <Property Name="A_Question_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Question_ID" />
+          </Key>
+          <Property Name="Question_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Q_Name" Type="nchar" MaxLength="200" />
+          <Property Name="Q_Category_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Questions_Category">
+          <Key>
+            <PropertyRef Name="QC_ID" />
+          </Key>
+          <Property Name="QC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QC_Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Service_ID" />
+          </Key>
+          <Property Name="Service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Service_Category_ID" Type="int" />
+          <Property Name="Service_Price" Type="float" />
+          <Property Name="Service_PMeasurment_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status_ID" />
+          </Key>
+          <Property Name="Status_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status_Name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+          <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ad_Questions_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
+          <End Role="Ad_Questions" Type="Self.Ad_Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Ad_ID" />
+            </Principal>
+            <Dependent Role="Ad_Questions">
+              <PropertyRef Name="AdQ_Ad_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ad_Questions_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="Ad_Questions" Type="Self.Ad_Questions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Question_ID" />
+            </Principal>
+            <Dependent Role="Ad_Questions">
+              <PropertyRef Name="AdQ_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ad_Services_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
+          <End Role="Ad_Services" Type="Self.Ad_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Ad_ID" />
+            </Principal>
+            <Dependent Role="Ad_Services">
+              <PropertyRef Name="AdS_Ad_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ad_Services_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Ad_Services" Type="Self.Ad_Services" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Ad_Services">
+              <PropertyRef Name="AdS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="Ad_Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="Ad_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="Ad_User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Q_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Q_Answers" Type="Self.Q_Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Question_ID" />
+            </Principal>
+            <Dependent Role="Q_Answers">
+              <PropertyRef Name="A_Question_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Questions_Category">
+          <End Role="Questions_Category" Type="Self.Questions_Category" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions_Category">
+              <PropertyRef Name="QC_ID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="Q_Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Service_Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Price_Measument">
+          <End Role="Price_Measurment" Type="Self.Price_Measurment" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_Measurment">
+              <PropertyRef Name="PM_ID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Service_PMeasurment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBServiceModelStoreContainer">
+          <EntitySet Name="Ad_Questions" EntityType="Self.Ad_Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ad_Services" EntityType="Self.Ad_Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Advertisment" EntityType="Self.Advertisment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price_Measurment" EntityType="Self.Price_Measurment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Q_Answers" EntityType="Self.Q_Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions_Category" EntityType="Self.Questions_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ad_Questions_Advertisment" Association="Self.FK_Ad_Questions_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="Ad_Questions" EntitySet="Ad_Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ad_Questions_Questions" Association="Self.FK_Ad_Questions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Ad_Questions" EntitySet="Ad_Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ad_Services_Advertisment" Association="Self.FK_Ad_Services_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="Ad_Services" EntitySet="Ad_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ad_Services_Services" Association="Self.FK_Ad_Services_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Ad_Services" EntitySet="Ad_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_Location" Association="Self.FK_Advertisment_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_Status" Association="Self.FK_Advertisment_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_User" Association="Self.FK_Advertisment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Q_Answers_Questions" Association="Self.FK_Q_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Q_Answers" EntitySet="Q_Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Questions_Category" Association="Self.FK_Questions_Questions_Category">
+            <End Role="Questions_Category" EntitySet="Questions_Category" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Categories" Association="Self.FK_Services_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Price_Measument" Association="Self.FK_Services_Price_Measument">
+            <End Role="Price_Measurment" EntitySet="Price_Measurment" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ad_Services">
+          <Key>
+            <PropertyRef Name="AdS_ID" />
+          </Key>
+          <Property Name="AdS_ID" Type="Int32" Nullable="false" />
+          <Property Name="AdS_Ad_ID" Type="Int32" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_Ad_Services_Advertisment" FromRole="Ad_Services" ToRole="Advertisment" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_Ad_Services_Services" FromRole="Ad_Services" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Advertisment">
+          <Key>
+            <PropertyRef Name="Ad_ID" />
+          </Key>
+          <Property Name="Ad_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ad_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ad_AddDataTime" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Ad_Budget" Type="Double" />
+          <Property Name="Ad_Status" Type="Int32" />
+          <Property Name="Ad_Location" Type="Int32" />
+          <Property Name="Ad_User_ID" Type="Int32" />
+          <NavigationProperty Name="Ad_Services" Relationship="Self.FK_Ad_Services_Advertisment" FromRole="Advertisment" ToRole="Ad_Services" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Advertisment_Location" FromRole="Advertisment" ToRole="Location" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Advertisment_Status" FromRole="Advertisment" ToRole="Status" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Advertisment_User" FromRole="Advertisment" ToRole="User" />
+          <NavigationProperty Name="Questions" Relationship="Self.Ad_Questions" FromRole="Advertisment" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Category_ID" />
+          </Key>
+          <Property Name="Category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_Services_Categories" FromRole="Categories" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Addresses" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_Advertisment_Location" FromRole="Location" ToRole="Advertisment" />
+        </EntityType>
+        <EntityType Name="Price_Measurment">
+          <Key>
+            <PropertyRef Name="PM_ID" />
+          </Key>
+          <Property Name="PM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PM_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_Services_Price_Measument" FromRole="Price_Measurment" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="Q_Answers">
+          <Key>
+            <PropertyRef Name="A_ID" />
+          </Key>
+          <Property Name="A_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="A_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="A_Question_ID" Type="Int32" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Q_Answers_Questions" FromRole="Q_Answers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Question_ID" />
+          </Key>
+          <Property Name="Question_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Q_Name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Q_Category_ID" Type="Int32" />
+          <NavigationProperty Name="Q_Answers" Relationship="Self.FK_Q_Answers_Questions" FromRole="Questions" ToRole="Q_Answers" />
+          <NavigationProperty Name="Questions_Category" Relationship="Self.FK_Questions_Questions_Category" FromRole="Questions" ToRole="Questions_Category" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.Ad_Questions" FromRole="Questions" ToRole="Advertisment" />
+        </EntityType>
+        <EntityType Name="Questions_Category">
+          <Key>
+            <PropertyRef Name="QC_ID" />
+          </Key>
+          <Property Name="QC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QC_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Questions_Category" FromRole="Questions_Category" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Service_ID" />
+          </Key>
+          <Property Name="Service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Service_Category_ID" Type="Int32" />
+          <Property Name="Service_Price" Type="Double" />
+          <Property Name="Service_PMeasurment_ID" Type="Int32" />
+          <NavigationProperty Name="Ad_Services" Relationship="Self.FK_Ad_Services_Services" FromRole="Services" ToRole="Ad_Services" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Services_Categories" FromRole="Services" ToRole="Categories" />
+          <NavigationProperty Name="Price_Measurment" Relationship="Self.FK_Services_Price_Measument" FromRole="Services" ToRole="Price_Measurment" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Status_ID" />
+          </Key>
+          <Property Name="Status_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_Advertisment_Status" FromRole="Status" ToRole="Advertisment" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
+          <Property Name="ActivationCode" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Advertisment" Relationship="Self.FK_Advertisment_User" FromRole="User" ToRole="Advertisment" />
+        </EntityType>
+        <Association Name="FK_Ad_Services_Advertisment">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
+          <End Role="Ad_Services" Type="Self.Ad_Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advertisment">
+              <PropertyRef Name="Ad_ID" />
+            </Principal>
+            <Dependent Role="Ad_Services">
+              <PropertyRef Name="AdS_Ad_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ad_Services_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Ad_Services" Type="Self.Ad_Services" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Ad_Services">
+              <PropertyRef Name="AdS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="Ad_Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Status_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="Ad_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Advertisment_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Advertisment">
+              <PropertyRef Name="Ad_User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Service_Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Price_Measument">
+          <End Role="Price_Measurment" Type="Self.Price_Measurment" Multiplicity="0..1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price_Measurment">
+              <PropertyRef Name="PM_ID" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Service_PMeasurment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Q_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Q_Answers" Type="Self.Q_Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Question_ID" />
+            </Principal>
+            <Dependent Role="Q_Answers">
+              <PropertyRef Name="A_Question_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Questions_Category">
+          <End Role="Questions_Category" Type="Self.Questions_Category" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions_Category">
+              <PropertyRef Name="QC_ID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="Q_Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ad_Questions">
+          <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBServiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ad_Services" EntityType="Self.Ad_Services" />
+          <EntitySet Name="Advertisment" EntityType="Self.Advertisment" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Location" EntityType="Self.Location" />
+          <EntitySet Name="Price_Measurment" EntityType="Self.Price_Measurment" />
+          <EntitySet Name="Q_Answers" EntityType="Self.Q_Answers" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" />
+          <EntitySet Name="Questions_Category" EntityType="Self.Questions_Category" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Ad_Services_Advertisment" Association="Self.FK_Ad_Services_Advertisment">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="Ad_Services" EntitySet="Ad_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ad_Services_Services" Association="Self.FK_Ad_Services_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Ad_Services" EntitySet="Ad_Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_Location" Association="Self.FK_Advertisment_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_Status" Association="Self.FK_Advertisment_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Advertisment_User" Association="Self.FK_Advertisment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Advertisment" EntitySet="Advertisment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Categories" Association="Self.FK_Services_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Price_Measument" Association="Self.FK_Services_Price_Measument">
+            <End Role="Price_Measurment" EntitySet="Price_Measurment" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Q_Answers_Questions" Association="Self.FK_Q_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Q_Answers" EntitySet="Q_Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Questions_Category" Association="Self.FK_Questions_Questions_Category">
+            <End Role="Questions_Category" EntitySet="Questions_Category" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="Ad_Questions" Association="Self.Ad_Questions">
+            <End Role="Advertisment" EntitySet="Advertisment" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities">
+          <EntitySetMapping Name="Ad_Services">
+            <EntityTypeMapping TypeName="DBServiceModel.Ad_Services">
+              <MappingFragment StoreEntitySet="Ad_Services">
+                <ScalarProperty Name="AdS_ID" ColumnName="AdS_ID" />
+                <ScalarProperty Name="AdS_Ad_ID" ColumnName="AdS_Ad_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Advertisment">
+            <EntityTypeMapping TypeName="DBServiceModel.Advertisment">
+              <MappingFragment StoreEntitySet="Advertisment">
+                <ScalarProperty Name="Ad_ID" ColumnName="Ad_ID" />
+                <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
+                <ScalarProperty Name="Ad_Description" ColumnName="Ad_Description" />
+                <ScalarProperty Name="Ad_AddDataTime" ColumnName="Ad_AddDataTime" />
+                <ScalarProperty Name="Ad_Budget" ColumnName="Ad_Budget" />
+                <ScalarProperty Name="Ad_Status" ColumnName="Ad_Status" />
+                <ScalarProperty Name="Ad_Location" ColumnName="Ad_Location" />
+                <ScalarProperty Name="Ad_User_ID" ColumnName="Ad_User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DBServiceModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location">
+            <EntityTypeMapping TypeName="DBServiceModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Addresses" ColumnName="Addresses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price_Measurment">
+            <EntityTypeMapping TypeName="DBServiceModel.Price_Measurment">
+              <MappingFragment StoreEntitySet="Price_Measurment">
+                <ScalarProperty Name="PM_ID" ColumnName="PM_ID" />
+                <ScalarProperty Name="PM_Name" ColumnName="PM_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Q_Answers">
+            <EntityTypeMapping TypeName="DBServiceModel.Q_Answers">
+              <MappingFragment StoreEntitySet="Q_Answers">
+                <ScalarProperty Name="A_ID" ColumnName="A_ID" />
+                <ScalarProperty Name="A_Name" ColumnName="A_Name" />
+                <ScalarProperty Name="A_Question_ID" ColumnName="A_Question_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="DBServiceModel.Questions">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="Question_ID" ColumnName="Question_ID" />
+                <ScalarProperty Name="Q_Name" ColumnName="Q_Name" />
+                <ScalarProperty Name="Q_Category_ID" ColumnName="Q_Category_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions_Category">
+            <EntityTypeMapping TypeName="DBServiceModel.Questions_Category">
+              <MappingFragment StoreEntitySet="Questions_Category">
+                <ScalarProperty Name="QC_ID" ColumnName="QC_ID" />
+                <ScalarProperty Name="QC_Name" ColumnName="QC_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="DBServiceModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="Service_Name" ColumnName="Service_Name" />
+                <ScalarProperty Name="Service_Category_ID" ColumnName="Service_Category_ID" />
+                <ScalarProperty Name="Service_Price" ColumnName="Service_Price" />
+                <ScalarProperty Name="Service_PMeasurment_ID" ColumnName="Service_PMeasurment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="DBServiceModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="Status_Name" ColumnName="Status_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBServiceModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DBServiceModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Ad_Questions" TypeName="DBServiceModel.Ad_Questions" StoreEntitySet="Ad_Questions">
+            <EndProperty Name="Advertisment">
+              <ScalarProperty Name="Ad_ID" ColumnName="AdQ_Ad_ID" />
+            </EndProperty>
+            <EndProperty Name="Questions">
+              <ScalarProperty Name="Question_ID" ColumnName="AdQ_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
