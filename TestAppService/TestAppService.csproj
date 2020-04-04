@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CategoriesListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\UserAdController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,7 +148,8 @@
     <Compile Include="Models\Categories.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Extended\ExQuestions.cs" />
+    <Compile Include="Models\Extended\Q_Answers.cs" />
+    <Compile Include="Models\Extended\Questions.cs" />
     <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\Location.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -254,9 +256,14 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\CategoriesList\Index_Categories.cshtml" />
     <Content Include="Views\Services\ListServices.cshtml" />
-    <Content Include="Views\Advertisment\Index_Ad.cshtml" />
+    <Content Include="Views\Advertisment\Create_Ad.cshtml" />
+    <Content Include="Views\Advertisment\Ad_List.cshtml" />
+    <Content Include="Views\Advertisment\Answers_List.cshtml" />
+    <Content Include="Views\Advertisment\QuestionsList.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\UserAd\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

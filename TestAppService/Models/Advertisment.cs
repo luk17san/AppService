@@ -24,7 +24,7 @@ namespace TestAppService.Models
         public int Ad_ID { get; set; }
         public string Ad_Name { get; set; }
         public string Ad_Description { get; set; }
-        public byte[] Ad_AddDataTime { get; set; }
+        public System.DateTime Ad_AddDataTime { get; set; }
         public Nullable<double> Ad_Budget { get; set; }
         public Nullable<int> Ad_Status { get; set; }
         public Nullable<int> Ad_Location { get; set; }

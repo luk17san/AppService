@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TestAppService.Models.Questions>
+
+
+<div class="list-group-item">
+ 
+        <div>
+            @Html.DisplayNameFor(model => model.Q_Name)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Questions_Category.QC_Name)
+        </div>
+</div>
+        
+
+@foreach (var item in Model) {
+<div class="list-group-item">
+    <div class="checkbox">
+        @Html.CheckBoxFor(modelItem => item.IsAvailable)
+        @Html.DisplayFor(modelItem => item.Q_Name)
+        @Html.DisplayFor(modelItem => item.Questions_Category.QC_Name)
+    </div>
+
+</div>
+   
+}
+

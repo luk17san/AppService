@@ -28,10 +28,5 @@ namespace TestAppService.Models
         public virtual ICollection<Q_Answers> Q_Answers { get; set; }
         public virtual Questions_Category Questions_Category { get; set; }
         public virtual Advertisment Advertisment { get; set; }
-
-        internal static object ToList()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
