@@ -1,26 +1,39 @@
-﻿@model IEnumerable<TestAppService.Models.Questions>
-
+﻿@using TestAppService.Models.Extended
+@model ViewModel_Ad
 
 <div class="list-group-item">
- 
-        <div>
-            @Html.DisplayNameFor(model => model.Q_Name)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.Questions_Category.QC_Name)
-        </div>
+
+    <div>
+        Question
+    </div>
+    <div>
+        Category Name
+    </div>
 </div>
-        
 
-@foreach (var item in Model) {
-<div class="list-group-item">
-    <div class="checkbox">
-        @Html.CheckBoxFor(modelItem => item.IsAvailable)
-        @Html.DisplayFor(modelItem => item.Q_Name)
-        @Html.DisplayFor(modelItem => item.Questions_Category.QC_Name)
+
+@foreach (var item in Model.Questions)
+{
+    <div class="list-group-item">
+        <div class="checkbox">
+            
+            @Html.DisplayFor(modelItem => item.Q_Name)
+            @Html.DisplayFor(modelItem => item.Questions_Category.QC_Name)
+
+            
+            @foreach (var itemA in Model.Q_Answers)
+            {
+                <div>
+
+                    @Html.CheckBoxFor(modelItem => itemA.IsAvailable)
+                    @Html.DisplayFor(modelItem => itemA.A_Name)
+
+                </div>
+            }
+        </div>
+
     </div>
 
-</div>
-   
 }
+
 

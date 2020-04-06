@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TestAppService.Models;
+using TestAppService.Models.Extended;
+
 
 
 namespace TestAppService.Controllers
@@ -18,8 +20,12 @@ namespace TestAppService.Controllers
        
         public ActionResult QuestionsList()
         {
-            var questions = db.Questions;
-            return View(questions.ToList());
+            ViewModel_Ad model_ad = new ViewModel_Ad();
+            model_ad.Questions = db.Questions;
+            model_ad.Q_Answers = db.Q_Answers;
+            return View(model_ad);
+            //var questions = db.Questions;
+            //return View(questions.ToList());
         }
         public ActionResult Questions()
         {
@@ -33,7 +39,8 @@ namespace TestAppService.Controllers
 
         public ActionResult Answers_List()
         {
-            var q_answers = db.Q_Answers;
+            var q_answers= db.Q_Answers;
+
             return View(q_answers.ToList());
         }
 
