@@ -1,0 +1,44 @@
+﻿@using TestAppService.Models;
+@model IEnumerable<TestAppService.Models.Questions>
+
+
+@{
+    ViewBag.Title = "Question List";
+}
+
+<h2>Question List</h2>
+
+<div class="list-group-item">
+
+    <div>
+        Question
+    </div>
+    <div>
+        Category Name
+    </div>
+</div>
+
+
+@foreach (Questions questions in @Model)
+{
+    <div class="list-group-item">
+        <div class="checkbox">
+
+            @Html.DisplayFor(q=>questions.Q_Name)
+            @Html.DisplayFor(q=>questions.Questions_Category.QC_Name)
+            @ViewBag.Question_ID
+            
+            
+        </div>
+
+    </div>
+
+}
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

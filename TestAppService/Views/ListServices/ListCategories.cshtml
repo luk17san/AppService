@@ -1,0 +1,25 @@
+﻿@using TestAppService.Models;
+@model IEnumerable<TestAppService.Models.Categories>
+
+
+@{
+    ViewBag.Title = "Categories List";
+}
+
+    <h2>Categories List</h2>
+
+    @foreach (Categories categories in @Model)
+    {
+        <li>
+             @Html.ActionLink(categories.Category_Name,"ListServices","ListServices", 
+            new {category_id=categories.Category_ID},null)
+
+        </li>         
+    }
+<div>
+    @Html.ActionLink("Back to List","Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

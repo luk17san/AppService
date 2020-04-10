@@ -1,0 +1,39 @@
+﻿@model TestAppService.Models.Services
+
+
+@{
+    ViewBag.Title = "Service Details";
+}
+<div>
+    <h2>Service Details</h2>
+    <table>
+        <tr>
+            <td>
+                <b>Service_Name : </b>@Model.Service_Name
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Category_Name : </b>@Model.Categories.Category_Name
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Service_Price : </b>@Model.Service_Price
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>PM_Name : </b>@Model.Price_Measurment.PM_Name
+            </td>
+
+        </tr>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "ListServices",
+    new { category_id = @Model.Service_Category_ID })
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

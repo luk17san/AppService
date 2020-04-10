@@ -1,0 +1,12 @@
+﻿@using TestAppService.Models;
+@model IEnumerable<TestAppService.Models.Q_Answers>
+
+@foreach (Q_Answers answers in Model)
+{
+    <div>
+
+        @Html.CheckBoxFor(modelItem => answers.IsAvailable)
+        @Html.DisplayFor(modelItem => answers.A_Name)
+
+    </div>
+}

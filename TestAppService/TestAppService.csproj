@@ -130,9 +130,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdvertismentController.cs" />
-    <Compile Include="Controllers\CategoriesListController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\ListServicesController.cs" />
     <Compile Include="Controllers\UserAdController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Crypto.cs" />
@@ -148,10 +147,11 @@
     <Compile Include="Models\Categories.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extended\AdContext.cs" />
+    <Compile Include="Models\Extended\ServicesContext.cs" />
     <Compile Include="Models\Extended\Q_Answers.cs" />
     <Compile Include="Models\Extended\Questions.cs" />
     <Compile Include="Models\Extended\User.cs" />
-    <Compile Include="Models\Extended\ViewModel_Ad.cs" />
     <Compile Include="Models\Location.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -170,6 +170,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Model_QA.cs" />
     <Compile Include="Models\Price_Measurment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -255,12 +256,15 @@
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\CategoriesList\Index_Categories.cshtml" />
-    <Content Include="Views\Services\ListServices.cshtml" />
     <Content Include="Views\Advertisment\Create_Ad.cshtml" />
     <Content Include="Views\Advertisment\Ad_List.cshtml" />
     <Content Include="Views\Advertisment\Answers_List.cshtml" />
-    <Content Include="Views\Advertisment\QuestionsList.cshtml" />
+    <Content Include="Views\ListServices\ListCategories.cshtml" />
+    <Content Include="Views\ListServices\ListServices.cshtml" />
+    <Content Include="Views\ListServices\DetailsServices.cshtml" />
+    <Content Include="Views\Advertisment\ListQuestions.cshtml" />
+    <Content Include="Views\Advertisment\ListAnswers.cshtml" />
+    <Content Include="Views\Advertisment\ListQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\UserAd\" />

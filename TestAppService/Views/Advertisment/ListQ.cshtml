@@ -1,0 +1,40 @@
+﻿@using TestAppService.Models;
+@model Model_QA
+
+<div class="list-group-item">
+
+    <div>
+        Question
+    </div>
+    <div>
+        Category Name
+    </div>
+</div>
+
+
+@foreach (var item in Model.Questions)
+{
+    <div class="list-group-item">
+        <div class="checkbox">
+
+            @Html.DisplayFor(modelItem => item.Q_Name)
+            @Html.DisplayFor(modelItem => item.Questions_Category.QC_Name)
+
+
+            @foreach (var q in Model.Q_Answers)
+            {
+                if (q.A_Question_ID == item.Question_ID)
+                {
+                <div>
+
+                    @Html.CheckBoxFor(modelItem => q.IsAvailable)
+                    @Html.DisplayFor(modelItem => q.A_Name)
+
+                </div>
+                }
+            }
+        </div>
+
+    </div>
+
+}
