@@ -1,54 +1,80 @@
-﻿@model TestAppService.Models.Advertisment
-
+﻿@using TestAppService.Models;
+@model Model_QA
 
 @{
     ViewBag.Title = "Create_Ad";
 }
 
-<h2>Index_Ad</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Advertisment</h4>
-        <hr />
+<div class="form-horizontal">
+    <h4>Advertisment</h4>
 
-
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ad_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ad_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ad_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ad_Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ad_Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ad_Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ad_Budget, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ad_Budget, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ad_Budget, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(Advertisment => Model.Advertisment.Ad_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(Advertisment => Model.Advertisment.Ad_Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(Advertisment => Model.Advertisment.Ad_Name, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(Advertisment => Model.Advertisment.Ad_Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(Advertisment => Model.Advertisment.Ad_Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(Advertisment => Model.Advertisment.Ad_Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(Advertisment => Model.Advertisment.Ad_Budget, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(Advertisment => Model.Advertisment.Ad_Budget, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(Advertisment => Model.Advertisment.Ad_Budget, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="list-group-item">
+        <div>
+            Question
+        </div>
+    </div>
+
+    @foreach (Questions item in Model.Questions)
+    {
+        <div class="list-group-item">
+            <div class="checkbox">
+
+                @Html.DisplayFor(modelItem => item.Q_Name)
+                @{int i;
+                }
+                @foreach (Q_Answers q in Model.Q_Answers)
+                {
+
+                    if (q.A_Question_ID == item.Question_ID)
+                    {
+                        <div>
+                            @Html.CheckBoxFor(Q_Answers => q.IsChecked)
+                            @Html.DisplayFor(modelItem => q.A_Name)
+                            @Html.HiddenFor(modelItem => q.A_ID)
+                            @Html.HiddenFor(modelItem => q.A_Name)
+                        </div>
+                       
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
 }
 
 <div>

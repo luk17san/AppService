@@ -258,12 +258,9 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Advertisment\Create_Ad.cshtml" />
     <Content Include="Views\Advertisment\Ad_List.cshtml" />
-    <Content Include="Views\Advertisment\Answers_List.cshtml" />
     <Content Include="Views\ListServices\ListCategories.cshtml" />
     <Content Include="Views\ListServices\ListServices.cshtml" />
     <Content Include="Views\ListServices\DetailsServices.cshtml" />
-    <Content Include="Views\Advertisment\ListQuestions.cshtml" />
-    <Content Include="Views\Advertisment\ListAnswers.cshtml" />
     <Content Include="Views\Advertisment\ListQ.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,6 @@
     <div>
         Question
     </div>
-    <div>
-        Category Name
-    </div>
 </div>
 
 
@@ -18,19 +15,22 @@
         <div class="checkbox">
 
             @Html.DisplayFor(modelItem => item.Q_Name)
-            @Html.DisplayFor(modelItem => item.Questions_Category.QC_Name)
+            
+
 
 
             @foreach (var q in Model.Q_Answers)
             {
                 if (q.A_Question_ID == item.Question_ID)
                 {
-                <div>
+            <div>
 
-                    @Html.CheckBoxFor(modelItem => q.IsAvailable)
-                    @Html.DisplayFor(modelItem => q.A_Name)
+                @Html.CheckBoxFor(modelItem => q.IsChecked)
+                @Html.DisplayFor(modelItem => q.A_Name)
+                @Html.HiddenFor(modelItem => q.A_ID)
+                @Html.HiddenFor(modelItem => q.A_Name)
 
-                </div>
+            </div>
                 }
             }
         </div>
