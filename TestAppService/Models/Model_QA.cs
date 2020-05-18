@@ -11,5 +11,16 @@ namespace TestAppService.Models
         public IEnumerable<Q_Answers> Q_Answers { get; set; }
         public IEnumerable<Questions> Questions { get; set; }
         public Models.Advertisment Advertisment { get; set; }
-}
+        public IList<string> SelectedAnswers { get; set; }
+        public IList<Q_Answers> AvailableAnswers { get; set; }
+
+
+    
+    public Model_QA()
+        {
+            SelectedAnswers = new List<string>();
+
+            AvailableAnswers = new List<Q_Answers>();
+        }
+    }
 }

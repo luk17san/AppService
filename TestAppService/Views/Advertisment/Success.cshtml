@@ -1,0 +1,15 @@
+﻿@using TestAppService.Models;
+@model Model_QA
+
+@using (Html.BeginForm())
+{
+foreach (var item in Model.Q_Answers)
+    {
+                    <label>
+                         @item.A_Name
+                    </label>
+
+                }
+            }
+        }
+}

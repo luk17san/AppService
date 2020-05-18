@@ -130,6 +130,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdvertismentController.cs" />
+    <Compile Include="Controllers\AnController.cs" />
+    <Compile Include="Controllers\Home2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListServicesController.cs" />
     <Compile Include="Controllers\UserAdController.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Models\Extended\Q_Answers.cs" />
     <Compile Include="Models\Extended\Questions.cs" />
     <Compile Include="Models\Extended\User.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Location.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -223,6 +226,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Controllers\ClassDiagram.cd" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -262,6 +266,10 @@
     <Content Include="Views\ListServices\ListServices.cshtml" />
     <Content Include="Views\ListServices\DetailsServices.cshtml" />
     <Content Include="Views\Advertisment\ListQ.cshtml" />
+    <Content Include="Views\Advertisment\Anserw.cshtml" />
+    <Content Include="Views\An\AnserwL.cshtml" />
+    <Content Include="Views\Home2\Index.cshtml" />
+    <Content Include="Views\Advertisment\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\UserAd\" />

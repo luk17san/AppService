@@ -26,7 +26,7 @@
           <Property Name="Ad_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ad_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Ad_Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Ad_AddDataTime" Type="datetime" Nullable="false" />
+          <Property Name="Ad_AddDateTime" Type="datetime" Nullable="false" />
           <Property Name="Ad_Budget" Type="float" />
           <Property Name="Ad_Status" Type="int" />
           <Property Name="Ad_Location" Type="int" />
@@ -60,7 +60,7 @@
             <PropertyRef Name="A_ID" />
           </Key>
           <Property Name="A_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="A_Name" Type="nchar" MaxLength="100" />
+          <Property Name="A_Name" Type="nvarchar" MaxLength="100" />
           <Property Name="A_Question_ID" Type="int" />
         </EntityType>
         <EntityType Name="Questions">
@@ -110,9 +110,9 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="First_Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DateOfBirth" Type="datetime" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
@@ -330,7 +330,7 @@
           <Property Name="Ad_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ad_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Ad_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Ad_AddDataTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ad_AddDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Ad_Budget" Type="Double" />
           <Property Name="Ad_Status" Type="Int32" />
           <Property Name="Ad_Location" Type="Int32" />
@@ -372,7 +372,7 @@
             <PropertyRef Name="A_ID" />
           </Key>
           <Property Name="A_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="A_Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="A_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="A_Question_ID" Type="Int32" />
           <NavigationProperty Name="Questions" Relationship="Self.FK_Q_Answers_Questions" FromRole="Q_Answers" ToRole="Questions" />
         </EntityType>
@@ -431,9 +431,9 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
@@ -552,7 +552,7 @@
           <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
           <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DBServiceEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBServiceEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ad_Services" EntityType="Self.Ad_Services" />
           <EntitySet Name="Advertisment" EntityType="Self.Advertisment" />
           <EntitySet Name="Categories" EntityType="Self.Categories" />
@@ -611,7 +611,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities">
+        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities1">
           <EntitySetMapping Name="Ad_Services">
             <EntityTypeMapping TypeName="DBServiceModel.Ad_Services">
               <MappingFragment StoreEntitySet="Ad_Services">
@@ -626,7 +626,7 @@
                 <ScalarProperty Name="Ad_ID" ColumnName="Ad_ID" />
                 <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
                 <ScalarProperty Name="Ad_Description" ColumnName="Ad_Description" />
-                <ScalarProperty Name="Ad_AddDataTime" ColumnName="Ad_AddDataTime" />
+                <ScalarProperty Name="Ad_AddDateTime" ColumnName="Ad_AddDateTime" />
                 <ScalarProperty Name="Ad_Budget" ColumnName="Ad_Budget" />
                 <ScalarProperty Name="Ad_Status" ColumnName="Ad_Status" />
                 <ScalarProperty Name="Ad_Location" ColumnName="Ad_Location" />
@@ -722,7 +722,7 @@
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="First_Name" ColumnName="First_Name" />
                 <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
-                <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />

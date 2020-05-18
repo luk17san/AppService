@@ -29,7 +29,7 @@ namespace TestAppService.Controllers
             if (ModelState.IsValid)
             {
                 #region //Email is already Exist
-                var isExist = IsEmailExist(user.Email_ID);
+                var isExist = IsEmailExist(user.Email);
                 if (isExist)
                 {
                     ModelState.AddModelError("EmailExist", "Email already exist");
@@ -53,9 +53,9 @@ namespace TestAppService.Controllers
 
                     //Send Email to User
 
-                    SendVerificationLinkEmail(user.Email_ID, user.ActivationCode.ToString());
+                    SendVerificationLinkEmail(user.Email, user.ActivationCode.ToString());
                     message = "Registrarion successfully done. Account activation link" +
-                        "has been sent to your email id:" + user.Email_ID;
+                        "has been sent to your email id:" + user.Email;
                     Status = true;
                     #endregion
                 }
@@ -109,7 +109,7 @@ namespace TestAppService.Controllers
             string message = "";
             using (DBServiceEntities dc = new DBServiceEntities())
             {
-                var v = dc.User.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
+                var v = dc.User.Where(a => a.Email == login.Email_ID).FirstOrDefault();
                 if(v !=null)
                 {
                     if (string.Compare(Crypto.Hash(login.Password),v.Password)==0)
@@ -156,7 +156,7 @@ namespace TestAppService.Controllers
         {
             using (DBServiceEntities dc = new DBServiceEntities())
             {
-                var v = dc.User.Where(a => a.Email_ID == emailID).FirstOrDefault();
+                var v = dc.User.Where(a => a.Email == emailID).FirstOrDefault();
                 return v != null;
             }
         }

@@ -23,7 +23,7 @@ namespace TestAppService.Models
         public int User_ID { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
-        public string Email_ID { get; set; }
+        public string Email { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Password { get; set; }
         public bool IsEmailVerified { get; set; }

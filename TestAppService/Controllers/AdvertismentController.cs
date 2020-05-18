@@ -12,6 +12,8 @@ namespace TestAppService.Controllers
     public class AdvertismentController : Controller
     {
         private DBServiceEntities db = new DBServiceEntities();
+
+        
         public ActionResult Create_Ad()
         {
             Model_QA model_QA = new Model_QA();
@@ -21,13 +23,23 @@ namespace TestAppService.Controllers
             return View(model_QA);
         }
         [HttpPost]
-        public ActionResult Create_Ad(Model_QA model)
+        public ActionResult Create_Ad(bool answers)
         {
-            var selectedAnswers = model.Q_Answers.
-                Where(x => x.IsChecked == true).ToList<Q_Answers>();
-            return Content(String.Join(",", selectedAnswers.Select(x => x.A_Name)));
+
+            List<Q_Answers> items = db.Q_Answers.ToList();
+            var selecteditem = items.Find(p => p.IsChecked == answers);
+                if (selecteditem!=null)
+            {
+                selecteditem.IsChecked = true;
+                ViewBag.Message = "Selected Answer: " + selecteditem.A_Name; 
+            }
+            return View(items);
         }
-        
+       
+        public ActionResult Success()
+        {
+            return View();
+        }
         public ActionResult Ad_List()
         {
             var ad_list = db.Advertisment;
