@@ -36,39 +36,7 @@
                 @Html.ValidationMessageFor(Advertisment => Model.Advertisment.Ad_Budget, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="list-group-item">
-            <div>
-                Question
-            </div>
-        </div>
 
-
-        @foreach (Questions item in Model.Questions)
-        {
-            using (Html.BeginForm("Create_Ad", "Advertisment"))
-            {
-                <div class="list-group-item">
-                    <div class="checkbox">
-                        @Html.DisplayFor(modelItem => item.Q_Name)
-                        @foreach (var a_item in Model.Q_Answers)
-                        {
-                            if (a_item.A_Question_ID == item.Question_ID)
-                            {
-                                if (Model.SelectedAnswers.Contains(a_item.A_Name))
-                                {<text> checked </text>}
-                            <div class="radio">
-                                <label>
-                                    <input type="radio"
-                                           name="SelectedAnswers"
-                                           value="@a_item.IsChecked" /> @a_item.A_Name
-                                    </label>
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            }
-        }
         <div class="form-group text-center">
             <input type="submit" class="btn btn-primary" value="Submit" />
         </div>

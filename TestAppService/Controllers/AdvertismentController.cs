@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,20 +23,6 @@ namespace TestAppService.Controllers
 
             return View(model_QA);
         }
-        [HttpPost]
-        public ActionResult Create_Ad(bool answers)
-        {
-
-            List<Q_Answers> items = db.Q_Answers.ToList();
-            var selecteditem = items.Find(p => p.IsChecked == answers);
-                if (selecteditem!=null)
-            {
-                selecteditem.IsChecked = true;
-                ViewBag.Message = "Selected Answer: " + selecteditem.A_Name; 
-            }
-            return View(items);
-        }
-       
         public ActionResult Success()
         {
             return View();

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TestAppService.Models.Advertisment>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad_AddDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad_Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Status_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.First_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad_AddDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad_Budget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Status_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.First_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Ad_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Ad_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Ad_ID })
+        </td>
+    </tr>
+}
+
+</table>

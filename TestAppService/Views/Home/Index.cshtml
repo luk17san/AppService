@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Index - fake data</h2>
 
 Welcome @HttpContext.Current.User.Identity.Name
 
@@ -11,6 +11,6 @@ Welcome @HttpContext.Current.User.Identity.Name
 {
     using (Html.BeginForm("Logout","User",FormMethod.Post, new { id="logoutForm"}))
     {
-        <a href="javascript:document.getElementById('logoutForm').submint()">Logout</a>
+        <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a>
     }
 }

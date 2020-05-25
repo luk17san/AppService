@@ -130,12 +130,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdvertismentController.cs" />
-    <Compile Include="Controllers\AnController.cs" />
-    <Compile Include="Controllers\Home2Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListServicesController.cs" />
-    <Compile Include="Controllers\UserAdController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -154,7 +152,6 @@
     <Compile Include="Models\Extended\Q_Answers.cs" />
     <Compile Include="Models\Extended\Questions.cs" />
     <Compile Include="Models\Extended\User.cs" />
-    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Location.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -265,15 +262,14 @@
     <Content Include="Views\ListServices\ListCategories.cshtml" />
     <Content Include="Views\ListServices\ListServices.cshtml" />
     <Content Include="Views\ListServices\DetailsServices.cshtml" />
-    <Content Include="Views\Advertisment\ListQ.cshtml" />
-    <Content Include="Views\Advertisment\Anserw.cshtml" />
-    <Content Include="Views\An\AnserwL.cshtml" />
-    <Content Include="Views\Home2\Index.cshtml" />
-    <Content Include="Views\Advertisment\Success.cshtml" />
+    <Content Include="Views\UserProfile\Profile.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Views\UserProfile\MyProfile.cshtml" />
+    <Content Include="Views\UserProfile\UserAdvertisment.cshtml" />
+    <Content Include="Views\UserProfile\UserProfesion.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\UserAd\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

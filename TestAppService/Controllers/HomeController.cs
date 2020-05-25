@@ -8,13 +8,20 @@ namespace TestAppService.Controllers
 {
     public class HomeController : Controller
     {
-        //Get: Home
-        [Authorize]
+        [AllowAnonymous]
         public ActionResult Index()
+        {
+            return View();
+        }   
+
+
+        [Authorize]
+        public ActionResult MyProfile()
         {
             return View();
         }
 
-       
+
+
     }
 }

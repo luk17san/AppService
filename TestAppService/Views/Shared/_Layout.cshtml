@@ -23,10 +23,28 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Usługi", "ListCategories", "ListServices")</li>
                     <li>@Html.ActionLink("Ad", "Ad_List", "Advertisment")</li>
+                    <li>@Html.ActionLink("Control", "UserAdvertisment", "UserProfile")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("Registration", "Registration", "User")</li>
-                    <li>@Html.ActionLink("Login", "Login", "User")</li>
+                    <li>
+                        @{
+                            if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="nav navbar-nav">Logout</a>
+                                }
+                            }
+                            else
+                            {
+                               <li>@Html.ActionLink("Login", "Login", "User")</li> 
+                            }
+                        }
+                    </li>
+                    <li>@Html.ActionLink("Profile", "Profile", "UserProfile")</li>
+
+
                 </ul>
             </div>
         </div>

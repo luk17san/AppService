@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Profile";
+}
+<h2>MyProfile</h2>
+
+<h3>Welcome @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest") - This is for autorized user</h3>
+@if(Session["UserId"]!=null)
+{
+<h3>user id= @Session["UserId"].ToString()</h3>
+}
+else
+{
+    <h3>Welcome- id is 0</h3> 
+}

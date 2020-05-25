@@ -10,6 +10,7 @@ namespace TestAppService.Models
     public partial class User
     {
         public string ConfirmPassword { get; set; }
+        public bool Tradesman { get; set; }
 
     }
 
@@ -23,10 +24,10 @@ namespace TestAppService.Models
             [Required(AllowEmptyStrings = false, ErrorMessage = "Last name required")]
             public string Last_Name { get; set; }
 
-            [Display(Name ="Email ID")]
-            [Required(AllowEmptyStrings = false, ErrorMessage = "Last name required")]
+            [Display(Name ="Email")]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Email required")]
             [DataType(DataType.EmailAddress)]
-            public string Email_ID { get; set; }
+            public string Email { get; set; }
 
             [Display(Name = "Date of birth")]
             [DataType(DataType.Date)]
@@ -43,7 +44,10 @@ namespace TestAppService.Models
             [Compare("Password", ErrorMessage = "Confirm password and password do not match")]
             public string ConfirmPassword { get; set; }
 
+            [Display(Name = "Tradesman")]
+            public bool Tradesman { get; set; }
+
         //    public bool IsEmailVerified { get; set; }
-         //   public System.Guid ActivationCode { get; set; }
-        }
+        //   public System.Guid ActivationCode { get; set; }
+    }
     }
