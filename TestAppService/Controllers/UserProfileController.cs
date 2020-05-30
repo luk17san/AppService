@@ -54,15 +54,16 @@ namespace TestAppService.Controllers
         {
             int serviceid = Convert.ToInt32(id["id"]);
             int userid = Convert.ToInt32(Session["UserId"]);
-            //Ad_Services
-            if (itemservice.Count() == 0)
+            ServicesContext adContext = new ServicesContext();
+            List<Services> services = adContext.Services.ToList();
+            if (services.Count() == 0)
             {
                 ViewBag.Message = "Please select Service";
-                return View();
+                return View(services);
             }
             else
             {
-                foreach(Services s in itemservice)
+                /*foreach(Services s in itemservice)
                 {
                     if(s.IsChecked)
                     {
@@ -74,7 +75,7 @@ namespace TestAppService.Controllers
                         db.User_Profesion.Add(save);
                         db.SaveChanges();
                     }
-                }
+                }*/
                 ViewBag.Message = "Service is add to ";
             }
 
