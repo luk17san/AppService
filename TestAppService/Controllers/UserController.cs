@@ -145,13 +145,11 @@ namespace TestAppService.Controllers
 
         //Logout
         [Authorize]
-        [HttpPost]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             Session["UserId"] = 0;
-
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
 
         [NonAction]

@@ -196,6 +196,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\User_Profesion.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +271,7 @@
     <Content Include="Views\UserProfile\MyProfile.cshtml" />
     <Content Include="Views\UserProfile\UserAdvertisment.cshtml" />
     <Content Include="Views\UserProfile\UserProfesion.cshtml" />
+    <Content Include="Views\User\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

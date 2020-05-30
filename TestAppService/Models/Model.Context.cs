@@ -37,5 +37,6 @@ namespace TestAppService.Models
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<User_Profesion> User_Profesion { get; set; }
     }
 }

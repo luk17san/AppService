@@ -49,6 +49,36 @@ namespace TestAppService.Controllers
             return View(services);
 
         }
+        [HttpPost, ActionName("UserProfesion")]
+        public ActionResult UserProfesion(IEnumerable<Services>itemservice,FormCollection id)
+        {
+            int serviceid = Convert.ToInt32(id["id"]);
+            int userid = Convert.ToInt32(Session["UserId"]);
+            //Ad_Services
+            if (itemservice.Count() == 0)
+            {
+                ViewBag.Message = "Please select Service";
+                return View();
+            }
+            else
+            {
+                foreach(Services s in itemservice)
+                {
+                    if(s.IsChecked)
+                    {
+                        var save = new User_Profesion
+                        {
+                            Id_Profesion = serviceid,
+                            Id_User = userid
+                        };
+                        db.User_Profesion.Add(save);
+                        db.SaveChanges();
+                    }
+                }
+                ViewBag.Message = "Service is add to ";
+            }
 
+            return View();
+        }
     }   
 }

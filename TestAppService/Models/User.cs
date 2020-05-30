@@ -18,6 +18,7 @@ namespace TestAppService.Models
         public User()
         {
             this.Advertisment = new HashSet<Advertisment>();
+            this.User_Profesion = new HashSet<User_Profesion>();
         }
     
         public int User_ID { get; set; }
@@ -31,5 +32,7 @@ namespace TestAppService.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertisment> Advertisment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Profesion> User_Profesion { get; set; }
     }
 }

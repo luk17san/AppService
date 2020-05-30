@@ -24,7 +24,8 @@ namespace TestAppService.Controllers
             List<Services> services = adContext.Services
                .Where(s => s.Service_Category_ID == category_id).ToList();
 
-            return View(services);
+            return View(services
+                );
         }
         public ActionResult DetailsServices(int id)
         {

@@ -23,5 +23,6 @@ namespace TestAppService.Models
         public virtual Ad_Services Ad_Services { get; set; }
         public virtual Categories Categories { get; set; }
         public virtual Price_Measurment Price_Measurment { get; set; }
+        public virtual User_Profesion User_Profesion { get; set; }
     }
 }

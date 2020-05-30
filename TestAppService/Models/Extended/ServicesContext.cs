@@ -6,6 +6,11 @@ using System.Data.Entity;
 
 namespace TestAppService.Models
 {
+    public partial class Services
+    {
+        public bool IsChecked { get; set; }
+
+    }
     public class ServicesContext :DBServiceEntities
     {
         public DbSet<Categories> Categories {get; set;}

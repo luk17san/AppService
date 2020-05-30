@@ -1,51 +1,38 @@
 ﻿@model IEnumerable<TestAppService.Models.Services>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Service_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Service_Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ad_Services.AdS_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categories.Category_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price_Measurment.PM_Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Service_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Service_Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ad_Services.AdS_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categories.Category_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price_Measurment.PM_Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Service_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Service_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Service_ID })
-        </td>
-    </tr>
+@if (Session["UserId"] != null)
+{
+    <h3>user id= @Session["UserId"].ToString()</h3>
+}
+else
+{
+    <h3>Welcome- id is 0</h3>
 }
 
-</table>
+<div class="list-group-item">
+    <div class="checkbox">
+        @using (Html.BeginForm("UserProfesion", "UserProfile", FormMethod.Post))
+        {
+
+            @Html.DisplayNameFor(model => model.Service_Name)
+
+            foreach (var item in Model)
+            {
+                <div>
+                    @Html.CheckBoxFor(modelItem => item.IsChecked)
+                    @Html.DisplayFor(modelItem => item.Service_Name)
+                    @Html.HiddenFor(modelItem => item.Service_ID)
+                    @Html.HiddenFor(modelItem => item.Service_Name)
+                </div>
+
+                //new { id = item.Service_ID })
+            }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Dodaj profesje" class="btn btn-default" />
+                </div>
+
+            </div>
+        }
+    </div>
+</div>

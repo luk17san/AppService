@@ -118,6 +118,13 @@
           <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="User_Profesion">
+          <Key>
+            <PropertyRef Name="Id_Profesion" />
+          </Key>
+          <Property Name="Id_Profesion" Type="int" Nullable="false" />
+          <Property Name="Id_User" Type="int" />
+        </EntityType>
         <Association Name="FK_Ad_Questions_Advertisment">
           <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
           <End Role="Ad_Questions" Type="Self.Ad_Questions" Multiplicity="*" />
@@ -250,6 +257,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Profesion_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="User_Profesion">
+              <PropertyRef Name="Id_Profesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Profesion_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="User_Profesion">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DBServiceModelStoreContainer">
           <EntitySet Name="Ad_Questions" EntityType="Self.Ad_Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ad_Services" EntityType="Self.Ad_Services" Schema="dbo" store:Type="Tables" />
@@ -264,6 +295,7 @@
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Profesion" EntityType="Self.User_Profesion" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Ad_Questions_Advertisment" Association="Self.FK_Ad_Questions_Advertisment">
             <End Role="Advertisment" EntitySet="Advertisment" />
             <End Role="Ad_Questions" EntitySet="Ad_Questions" />
@@ -307,6 +339,14 @@
           <AssociationSet Name="FK_Services_Price_Measument" Association="Self.FK_Services_Price_Measument">
             <End Role="Price_Measurment" EntitySet="Price_Measurment" />
             <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profesion_Services" Association="Self.FK_User_Profesion_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="User_Profesion" EntitySet="User_Profesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profesion_User" Association="Self.FK_User_Profesion_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_Profesion" EntitySet="User_Profesion" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -407,6 +447,7 @@
           <NavigationProperty Name="Ad_Services" Relationship="Self.FK_Ad_Services_Services" FromRole="Services" ToRole="Ad_Services" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Services_Categories" FromRole="Services" ToRole="Categories" />
           <NavigationProperty Name="Price_Measurment" Relationship="Self.FK_Services_Price_Measument" FromRole="Services" ToRole="Price_Measurment" />
+          <NavigationProperty Name="User_Profesion" Relationship="Self.FK_User_Profesion_Services" FromRole="Services" ToRole="User_Profesion" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -439,6 +480,16 @@
           <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
           <Property Name="ActivationCode" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Advertisment" Relationship="Self.FK_Advertisment_User" FromRole="User" ToRole="Advertisment" />
+          <NavigationProperty Name="User_Profesion" Relationship="Self.FK_User_Profesion_User" FromRole="User" ToRole="User_Profesion" />
+        </EntityType>
+        <EntityType Name="User_Profesion">
+          <Key>
+            <PropertyRef Name="Id_Profesion" />
+          </Key>
+          <Property Name="Id_Profesion" Type="Int32" Nullable="false" />
+          <Property Name="Id_User" Type="Int32" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_User_Profesion_Services" FromRole="User_Profesion" ToRole="Services" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Profesion_User" FromRole="User_Profesion" ToRole="User" />
         </EntityType>
         <Association Name="FK_Ad_Services_Advertisment">
           <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
@@ -548,11 +599,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Profesion_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="User_Profesion">
+              <PropertyRef Name="Id_Profesion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Profesion_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="User_Profesion">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Ad_Questions">
           <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
           <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DBServiceEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBServiceEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ad_Services" EntityType="Self.Ad_Services" />
           <EntitySet Name="Advertisment" EntityType="Self.Advertisment" />
           <EntitySet Name="Categories" EntityType="Self.Categories" />
@@ -565,6 +640,7 @@
           <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="User_Profesion" EntityType="Self.User_Profesion" />
           <AssociationSet Name="FK_Ad_Services_Advertisment" Association="Self.FK_Ad_Services_Advertisment">
             <End Role="Advertisment" EntitySet="Advertisment" />
             <End Role="Ad_Services" EntitySet="Ad_Services" />
@@ -601,6 +677,14 @@
             <End Role="Questions_Category" EntitySet="Questions_Category" />
             <End Role="Questions" EntitySet="Questions" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Profesion_Services" Association="Self.FK_User_Profesion_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="User_Profesion" EntitySet="User_Profesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profesion_User" Association="Self.FK_User_Profesion_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_Profesion" EntitySet="User_Profesion" />
+          </AssociationSet>
           <AssociationSet Name="Ad_Questions" Association="Self.Ad_Questions">
             <End Role="Advertisment" EntitySet="Advertisment" />
             <End Role="Questions" EntitySet="Questions" />
@@ -611,7 +695,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities1">
+        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities">
           <EntitySetMapping Name="Ad_Services">
             <EntityTypeMapping TypeName="DBServiceModel.Ad_Services">
               <MappingFragment StoreEntitySet="Ad_Services">
@@ -727,6 +811,14 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Profesion">
+            <EntityTypeMapping TypeName="DBServiceModel.User_Profesion">
+              <MappingFragment StoreEntitySet="User_Profesion">
+                <ScalarProperty Name="Id_Profesion" ColumnName="Id_Profesion" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
