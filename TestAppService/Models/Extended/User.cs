@@ -12,6 +12,8 @@ namespace TestAppService.Models
         public string ConfirmPassword { get; set; }
         public bool Tradesman { get; set; }
 
+        public virtual ICollection<Services> UserServices { get; set; }
+
     }
 
     public class UserMetaData

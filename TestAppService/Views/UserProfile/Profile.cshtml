@@ -1,48 +1,49 @@
 ﻿@model TestAppService.Models.User
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.First_Name)
-        </dt>
+    <div>
+        <h4>User</h4>
+        @Html.ActionLink("AddProfesion", "UserProfesion", new { id = Model.User_ID })
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.First_Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.First_Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.First_Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Last_Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Last_Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Last_Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Last_Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DateOfBirth)
+            </dd>
 
-        @Html.Partial("UserAdvertisment", Model.Advertisment)
+            @Html.Partial("UserAdvertisment", Model.Advertisment)
 
 
 
-    </dl>
-</div>
+        </dl>
+    </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = @Session["UserId"].ToString() }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

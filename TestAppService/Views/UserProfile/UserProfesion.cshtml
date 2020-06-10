@@ -1,38 +1,41 @@
-﻿@model IEnumerable<TestAppService.Models.Services>
+﻿@model TestAppService.Models.Extended.UserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
 
 @if (Session["UserId"] != null)
 {
     <h3>user id= @Session["UserId"].ToString()</h3>
 }
-else
+
+    <h2>Edit</h2>
+
+@using (Html.BeginForm())
 {
-    <h3>Welcome- id is 0</h3>
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserVM, "Profesions", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @for (int i = 0; i < Model.UserVM.Count(); i++)
+                {
+                    @Html.EditorFor(m => Model.UserVM[i].IsChecked)
+                    @Html.DisplayFor(m => Model.UserVM[i].Name)
+                    @Html.HiddenFor(m => Model.UserVM[i].Name)
+                    @Html.HiddenFor(m => Model.UserVM[i].Id)
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 
-<div class="list-group-item">
-    <div class="checkbox">
-        @using (Html.BeginForm("UserProfesion", "UserProfile", FormMethod.Post))
-        {
-
-            @Html.DisplayNameFor(model => model.Service_Name)
-
-            foreach (var item in Model)
-            {
-                <div>
-                    @Html.CheckBoxFor(modelItem => item.IsChecked)
-                    @Html.DisplayFor(modelItem => item.Service_Name)
-                    @Html.HiddenFor(modelItem => item.Service_ID)
-                    @Html.HiddenFor(modelItem => item.Service_Name)
-                </div>
-
-                //new { id = item.Service_ID })
-            }
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Dodaj profesje" class="btn btn-default" />
-                </div>
-
-            </div>
-        }
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>

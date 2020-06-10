@@ -15,7 +15,8 @@ namespace TestAppService.Models
     public partial class User_Profesion
     {
         public int Id_Profesion { get; set; }
-        public Nullable<int> Id_User { get; set; }
+        public int Id_User { get; set; }
+        public int Id_Service { get; set; }
     
         public virtual Services Services { get; set; }
         public virtual User User { get; set; }

@@ -132,12 +132,14 @@
     <Compile Include="Controllers\AdvertismentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListServicesController.cs" />
+    <Compile Include="Controllers\ServicesUserController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Advertisment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -148,6 +150,8 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\AdContext.cs" />
+    <Compile Include="Models\Extended\CheckBoxViewModelProfesion.cs" />
+    <Compile Include="Models\Extended\UserViewModel.cs" />
     <Compile Include="Models\Extended\ServicesContext.cs" />
     <Compile Include="Models\Extended\Q_Answers.cs" />
     <Compile Include="Models\Extended\Questions.cs" />
@@ -227,6 +231,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Controllers\ClassDiagram.cd" />
+    <Content Include="libman.json" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -272,6 +277,16 @@
     <Content Include="Views\UserProfile\UserAdvertisment.cshtml" />
     <Content Include="Views\UserProfile\UserProfesion.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\ServicesUser\Create.cshtml" />
+    <Content Include="Views\ServicesUser\Delete.cshtml" />
+    <Content Include="Views\ServicesUser\Details.cshtml" />
+    <Content Include="Views\ServicesUser\Edit.cshtml" />
+    <Content Include="Views\ServicesUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,2 +1,166 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical" MembersFormat="NameAndType">
+  <Class Name="TestAppService.Models.DBServiceEntities">
+    <Position X="1" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAABhAAEAAAAAAAAQAIAAAAAEAAAEAAEAAAAEAAgAAA=</HashCode>
+      <FileName>Models\Model.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Models.Ad_Services">
+    <Position X="11.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIAAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Ad_Services.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Services" />
+      <Property Name="Advertisment" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Advertisment">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="Advertisment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABBAABEAABAAAAAQAMCAQAAAAAIAAAEAAAAAAAEAAA=</HashCode>
+      <FileName>Models\Advertisment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+      <Property Name="Status" />
+      <Property Name="Location" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Questions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Categories">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Categories.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Services" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Location">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="Location" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAIAEAAgAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Location.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Advertisment" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Price_Measurment">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="Price_Measurment" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Price_Measurment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Services" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Q_Answers">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGAAAAAAAAAAEAAAAAAAAQAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Extended\Q_Answers.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Questions" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Questions">
+    <Position X="16.5" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="Questions" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>hAAABAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAgAAA=</HashCode>
+      <FileName>Models\Questions.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Questions_Category" />
+      <Property Name="Advertisment" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Q_Answers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Questions_Category">
+    <Position X="13.75" Y="5.75" Width="1.5" />
+    <Members>
+      <Method Name="Questions_Category" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAEAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Questions_Category.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Questions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Services">
+    <Position X="9" Y="2.25" Width="1.5" />
+    <Members>
+      <Method Name="Services" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAAAAAAQAAAAAAAIAAAEQgAAAACAAAABAA=</HashCode>
+      <FileName>Models\Extended\ServicesContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Categories" />
+      <Property Name="Ad_Services" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="User_Profesion" />
+      <Property Name="User_Profesions" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Status">
+    <Position X="3.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAACAAgAAA=</HashCode>
+      <FileName>Models\Status.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Advertisment" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.User">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <Members>
+      <Method Name="User" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAiACAAAAAAAAAEgAABAAAQAgACAABAAAAgIAA=</HashCode>
+      <FileName>Models\Extended\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="UserServices" />
+      <Property Name="User_Profesion" />
+      <Property Name="Advertisment" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.User_Profesion">
+    <Position X="9.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAgAAA=</HashCode>
+      <FileName>Models\User_Profesion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

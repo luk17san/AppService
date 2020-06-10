@@ -1,7 +1,17 @@
 ﻿@model IEnumerable<TestAppService.Models.Advertisment>
 
+<h3>Welcome @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest") - This is for autorized user</h3>
+@if(Session["UserId"]!=null)
+{
+<h3>user id= @Session["UserId"].ToString()</h3>
+}
+else
+{
+    <h3>Welcome- id is 0</h3> 
+}
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateProfesion",new { id = Session["UserId"].ToString() })
 </p>
 <table class="table">
     <tr>

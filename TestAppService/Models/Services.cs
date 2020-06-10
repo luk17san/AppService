@@ -14,6 +14,12 @@ namespace TestAppService.Models
     
     public partial class Services
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Services()
+        {
+            this.User_Profesion = new HashSet<User_Profesion>();
+        }
+    
         public int Service_ID { get; set; }
         public string Service_Name { get; set; }
         public Nullable<int> Service_Category_ID { get; set; }
@@ -23,6 +29,7 @@ namespace TestAppService.Models
         public virtual Ad_Services Ad_Services { get; set; }
         public virtual Categories Categories { get; set; }
         public virtual Price_Measurment Price_Measurment { get; set; }
-        public virtual User_Profesion User_Profesion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Profesion> User_Profesion { get; set; }
     }
 }

@@ -122,8 +122,9 @@
           <Key>
             <PropertyRef Name="Id_Profesion" />
           </Key>
-          <Property Name="Id_Profesion" Type="int" Nullable="false" />
-          <Property Name="Id_User" Type="int" />
+          <Property Name="Id_Profesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_User" Type="int" Nullable="false" />
+          <Property Name="Id_Service" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Ad_Questions_Advertisment">
           <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="1" />
@@ -257,20 +258,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Profesion_Services">
+        <Association Name="FK_User_Profesion_Services1">
           <End Role="Services" Type="Self.Services" Multiplicity="1" />
-          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="0..1" />
+          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="Service_ID" />
             </Principal>
             <Dependent Role="User_Profesion">
-              <PropertyRef Name="Id_Profesion" />
+              <PropertyRef Name="Id_Service" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Profesion_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -340,7 +341,7 @@
             <End Role="Price_Measurment" EntitySet="Price_Measurment" />
             <End Role="Services" EntitySet="Services" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Profesion_Services" Association="Self.FK_User_Profesion_Services">
+          <AssociationSet Name="FK_User_Profesion_Services1" Association="Self.FK_User_Profesion_Services1">
             <End Role="Services" EntitySet="Services" />
             <End Role="User_Profesion" EntitySet="User_Profesion" />
           </AssociationSet>
@@ -447,7 +448,7 @@
           <NavigationProperty Name="Ad_Services" Relationship="Self.FK_Ad_Services_Services" FromRole="Services" ToRole="Ad_Services" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Services_Categories" FromRole="Services" ToRole="Categories" />
           <NavigationProperty Name="Price_Measurment" Relationship="Self.FK_Services_Price_Measument" FromRole="Services" ToRole="Price_Measurment" />
-          <NavigationProperty Name="User_Profesion" Relationship="Self.FK_User_Profesion_Services" FromRole="Services" ToRole="User_Profesion" />
+          <NavigationProperty Name="User_Profesion" Relationship="Self.FK_User_Profesion_Services1" FromRole="Services" ToRole="User_Profesion" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -486,9 +487,10 @@
           <Key>
             <PropertyRef Name="Id_Profesion" />
           </Key>
-          <Property Name="Id_Profesion" Type="Int32" Nullable="false" />
-          <Property Name="Id_User" Type="Int32" />
-          <NavigationProperty Name="Services" Relationship="Self.FK_User_Profesion_Services" FromRole="User_Profesion" ToRole="Services" />
+          <Property Name="Id_Profesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_User" Type="Int32" Nullable="false" />
+          <Property Name="Id_Service" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Services" Relationship="Self.FK_User_Profesion_Services1" FromRole="User_Profesion" ToRole="Services" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Profesion_User" FromRole="User_Profesion" ToRole="User" />
         </EntityType>
         <Association Name="FK_Ad_Services_Advertisment">
@@ -599,20 +601,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Profesion_Services">
+        <Association Name="FK_User_Profesion_Services1">
           <End Role="Services" Type="Self.Services" Multiplicity="1" />
-          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="0..1" />
+          <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Services">
               <PropertyRef Name="Service_ID" />
             </Principal>
             <Dependent Role="User_Profesion">
-              <PropertyRef Name="Id_Profesion" />
+              <PropertyRef Name="Id_Service" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Profesion_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="User_Profesion" Type="Self.User_Profesion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -627,7 +629,7 @@
           <End Role="Advertisment" Type="Self.Advertisment" Multiplicity="0..1" />
           <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DBServiceEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBServiceEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ad_Services" EntityType="Self.Ad_Services" />
           <EntitySet Name="Advertisment" EntityType="Self.Advertisment" />
           <EntitySet Name="Categories" EntityType="Self.Categories" />
@@ -677,7 +679,7 @@
             <End Role="Questions_Category" EntitySet="Questions_Category" />
             <End Role="Questions" EntitySet="Questions" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Profesion_Services" Association="Self.FK_User_Profesion_Services">
+          <AssociationSet Name="FK_User_Profesion_Services1" Association="Self.FK_User_Profesion_Services1">
             <End Role="Services" EntitySet="Services" />
             <End Role="User_Profesion" EntitySet="User_Profesion" />
           </AssociationSet>
@@ -695,7 +697,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities">
+        <EntityContainerMapping StorageEntityContainer="DBServiceModelStoreContainer" CdmEntityContainer="DBServiceEntities1">
           <EntitySetMapping Name="Ad_Services">
             <EntityTypeMapping TypeName="DBServiceModel.Ad_Services">
               <MappingFragment StoreEntitySet="Ad_Services">
@@ -819,6 +821,7 @@
               <MappingFragment StoreEntitySet="User_Profesion">
                 <ScalarProperty Name="Id_Profesion" ColumnName="Id_Profesion" />
                 <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Id_Service" ColumnName="Id_Service" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
