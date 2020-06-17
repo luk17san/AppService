@@ -129,10 +129,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\aController.cs" />
     <Compile Include="Controllers\AdvertismentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListServicesController.cs" />
-    <Compile Include="Controllers\ServicesUserController.cs" />
+    <Compile Include="Controllers\MessageBoxController.cs" />
+    <Compile Include="Controllers\qController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\TradesmanController.cs" />
+    <Compile Include="Controllers\uController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Crypto.cs" />
@@ -143,7 +147,7 @@
     <Compile Include="Models\Advertisment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ad_Services.cs">
+    <Compile Include="Models\Answers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Categories.cs">
@@ -151,12 +155,16 @@
     </Compile>
     <Compile Include="Models\Extended\AdContext.cs" />
     <Compile Include="Models\Extended\CheckBoxViewModelProfesion.cs" />
+    <Compile Include="Models\Extended\ProfesionViewModel.cs" />
     <Compile Include="Models\Extended\UserViewModel.cs" />
     <Compile Include="Models\Extended\ServicesContext.cs" />
     <Compile Include="Models\Extended\Q_Answers.cs" />
     <Compile Include="Models\Extended\Questions.cs" />
     <Compile Include="Models\Extended\User.cs" />
     <Compile Include="Models\Location.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MessageBox.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Context.cs">
@@ -174,20 +182,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model_QA.cs" />
-    <Compile Include="Models\Price_Measurment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Questions.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Questions_Category.cs">
+    <Compile Include="Models\QuestionToAdvertisment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Q_Answers.cs">
+    <Compile Include="Models\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ServiceDbContext.cs" />
     <Compile Include="Models\Services.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiceToAdvertisment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Status.cs">
@@ -200,9 +208,11 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserLogin.cs" />
-    <Compile Include="Models\User_Profesion.cs">
+    <Compile Include="Models\UserProfesion.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\CategoriesViewModel.cs" />
+    <Compile Include="Models\ViewModel\AdViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +224,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\MyStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -232,6 +243,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Controllers\ClassDiagram.cd" />
     <Content Include="libman.json" />
+    <Content Include="Controllers\ControllerDiagram.cd" />
     <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
@@ -265,30 +277,43 @@
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\User\VerifyAccount.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\Advertisment\Create_Ad.cshtml" />
-    <Content Include="Views\Advertisment\Ad_List.cshtml" />
-    <Content Include="Views\ListServices\ListCategories.cshtml" />
-    <Content Include="Views\ListServices\ListServices.cshtml" />
-    <Content Include="Views\ListServices\DetailsServices.cshtml" />
+    <Content Include="Views\Advertisment\CreateAdvertismentold.cshtml" />
+    <Content Include="Views\Advertisment\ListAdvertisment.cshtml" />
+    <Content Include="Views\Services\ListCategories.cshtml" />
+    <Content Include="Views\Services\ListServices.cshtml" />
+    <Content Include="Views\Services\DetailsServices.cshtml" />
     <Content Include="Views\UserProfile\Profile.cshtml" />
     <Content Include="Views\UserProfile\Index.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
     <Content Include="Views\UserProfile\MyProfile.cshtml" />
-    <Content Include="Views\UserProfile\UserAdvertisment.cshtml" />
+    <Content Include="Views\UserProfile\UserListAdvertisment.cshtml" />
     <Content Include="Views\UserProfile\UserProfesion.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\ServicesUser\Create.cshtml" />
-    <Content Include="Views\ServicesUser\Delete.cshtml" />
-    <Content Include="Views\ServicesUser\Details.cshtml" />
-    <Content Include="Views\ServicesUser\Edit.cshtml" />
-    <Content Include="Views\ServicesUser\Index.cshtml" />
+    <Content Include="Views\UserProfile\DetailsProfesion.cshtml" />
+    <Content Include="Views\Tradesman\ListTradesman.cshtml" />
+    <Content Include="Views\u\Create.cshtml" />
+    <Content Include="Views\u\Delete.cshtml" />
+    <Content Include="Views\u\Details.cshtml" />
+    <Content Include="Views\u\Edit.cshtml" />
+    <Content Include="Views\u\Index.cshtml" />
+    <Content Include="Views\UserProfile\EditProfile.cshtml" />
+    <Content Include="Views\UserProfile\DeleteProfile.cshtml" />
+    <Content Include="Views\a\Create.cshtml" />
+    <Content Include="Views\a\Delete.cshtml" />
+    <Content Include="Views\a\Details.cshtml" />
+    <Content Include="Views\a\Edit.cshtml" />
+    <Content Include="Views\a\Index.cshtml" />
+    <Content Include="Views\Advertisment\CreateAdvertisment.cshtml" />
+    <Content Include="Views\q\Create.cshtml" />
+    <Content Include="Views\q\Delete.cshtml" />
+    <Content Include="Views\q\Details.cshtml" />
+    <Content Include="Views\q\Edit.cshtml" />
+    <Content Include="Views\q\Index.cshtml" />
+    <Content Include="Views\q\EditList.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\MessageBox\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

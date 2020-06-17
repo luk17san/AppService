@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using TestAppService.Models.Extended;
 
 namespace TestAppService.Models
 {
@@ -12,7 +13,9 @@ namespace TestAppService.Models
         public string ConfirmPassword { get; set; }
         public bool Tradesman { get; set; }
 
-        public virtual ICollection<Services> UserServices { get; set; }
+        public virtual ICollection<Services> Services { get; set; }
+        //public virtual ICollection<Advertisment> Advertisment { get; set; }
+        public virtual ICollection<UserProfesion> UserProfesions { get; set; }
 
     }
 
@@ -20,11 +23,11 @@ namespace TestAppService.Models
     {
             [Display(Name="First Name")]
             [Required(AllowEmptyStrings =false,ErrorMessage ="First name required")]
-            public string First_Name { get; set; }
+            public string FirstName { get; set; }
 
             [Display(Name = "Last Name")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Last name required")]
-            public string Last_Name { get; set; }
+            public string LastName { get; set; }
 
             [Display(Name ="Email")]
             [Required(AllowEmptyStrings = false, ErrorMessage = "Email required")]

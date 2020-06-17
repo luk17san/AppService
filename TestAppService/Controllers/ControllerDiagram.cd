@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="TestAppService.Controllers.AdvertismentController">
+    <Position X="13.25" Y="4.5" Width="2.75" />
+    <Members>
+      <Field Name="db" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAIAAQAAAAAAAAAIAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdvertismentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Controllers.HomeController">
+    <Position X="17.25" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Controllers.MessageBoxController">
+    <Position X="20" Y="1.75" Width="2.5" />
+    <Members>
+      <Method Name="Index" Hidden="true" />
+    </Members>
+    <InheritanceLine Type="System.Web.Mvc.Controller" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18" Y="5.75" />
+        <Point X="18" Y="3.845" />
+        <Point X="21.25" Y="3.845" />
+        <Point X="21.25" Y="3.56" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAEAAAAAABAAAAAAAAAAAEAAACAAAA=</HashCode>
+      <FileName>Controllers\MessageBoxController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Controllers.ServicesController">
+    <Position X="13.25" Y="1.75" Width="2.25" />
+    <InheritanceLine Type="System.Web.Mvc.Controller" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="18" Y="5.75" />
+        <Point X="18" Y="4.062" />
+        <Point X="14.375" Y="4.062" />
+        <Point X="14.375" Y="3.752" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAJAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAABAAAAgA=</HashCode>
+      <FileName>Controllers\ServicesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Controllers.TradesmanController">
+    <Position X="20" Y="7.75" Width="2.5" />
+    <Members>
+      <Field Name="db" Hidden="true" />
+      <Method Name="Index" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAQAAQAAAAAAAEAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TradesmanController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Controllers.UserController">
+    <Position X="13.25" Y="7.5" Width="3.25" />
+    <Members>
+      <Field Name="db" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAQAAAEgQg=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Controllers.UserProfileController">
+    <Position X="19.25" Y="4.25" Width="3.25" />
+    <Members>
+      <Field Name="db" Hidden="true" />
+      <Method Name="Index" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAkAQgAAAAAAAAAAAACAAAAAAABEAAAAAAgA=</HashCode>
+      <FileName>Controllers\UserProfileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Web.Mvc.Controller" Collapsed="true">
+    <Position X="17" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.72" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

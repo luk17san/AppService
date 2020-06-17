@@ -25,18 +25,19 @@ namespace TestAppService.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Ad_Services> Ad_Services { get; set; }
         public virtual DbSet<Advertisment> Advertisment { get; set; }
+        public virtual DbSet<Answers> Answers { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<Location> Location { get; set; }
-        public virtual DbSet<Price_Measurment> Price_Measurment { get; set; }
-        public virtual DbSet<Q_Answers> Q_Answers { get; set; }
+        public virtual DbSet<MessageBox> MessageBox { get; set; }
         public virtual DbSet<Questions> Questions { get; set; }
-        public virtual DbSet<Questions_Category> Questions_Category { get; set; }
+        public virtual DbSet<QuestionToAdvertisment> QuestionToAdvertisment { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Services> Services { get; set; }
+        public virtual DbSet<ServiceToAdvertisment> ServiceToAdvertisment { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<User_Profesion> User_Profesion { get; set; }
+        public virtual DbSet<UserProfesion> UserProfesion { get; set; }
     }
 }

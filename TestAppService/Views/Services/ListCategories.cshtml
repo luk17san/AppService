@@ -1,0 +1,33 @@
+﻿@using TestAppService.Models;
+@model IEnumerable<TestAppService.Models.Categories>
+
+
+@{
+    ViewBag.Title = "Categories List";
+}
+
+<h2>Jakich usług potrzebujesz?</h2>
+<table class="table-responsive">
+    @foreach (Categories categories in @Model)
+    {
+        if (categories.CategoryID % 3 == 1)
+        {
+            @:
+            <tr></tr>
+        }
+            <th>
+                <div class="CategoryBox">
+                    <picture>PlaceHolder</picture>
+                    @Html.ActionLink(categories.Name, "ListServices", "ListServices",
+                   new { category_id = categories.CategoryID }, null)
+                </div>
+            </th>
+        }
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

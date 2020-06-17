@@ -1,0 +1,30 @@
+﻿@model TestAppService.Models.ViewModel.AdViewModel
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model.QuestionsIE)
+{
+    using (Html.BeginForm("EditList","q"))
+    {
+        <div class="list-group-item">
+            <div class="checkbox">
+                @Html.DisplayFor(modelItem => item.Name)
+
+                @foreach (var a_item in Model.AnswersIE)
+                {
+                    
+                    <div class="form-group">
+                        @Html.DisplayNameFor(a_item=>a_item.Answers.AnswerID)
+                    <div class="col-md-10">
+                        @Html.DropDownList("AnswerID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Answers.AnswerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                    
+                }
+            </div>
+        </div>
+    }
+}

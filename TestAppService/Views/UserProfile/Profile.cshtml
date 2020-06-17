@@ -1,49 +1,65 @@
 ﻿@model TestAppService.Models.User
 
     <div>
-        <h4>User</h4>
-        @Html.ActionLink("AddProfesion", "UserProfesion", new { id = Model.User_ID })
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.First_Name)
-            </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.First_Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Last_Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Last_Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateOfBirth)
-            </dd>
-
-            @Html.Partial("UserAdvertisment", Model.Advertisment)
-
-
-
-        </dl>
+        <div class="form-group">
+            <menu class="UPB-left">
+                <p>
+                    <input type="submit" value="Skrzynka" class="btn btn-default btn-x" />
+                </p>
+                <p>
+                    <input type="submit" value="Edytuj profil" class="btn btn-default btn-x" onclick="location.href='@Url.Action("EditProfile", new { id = Model.UserID })'" />
+                </p>
+                <p>
+                    <input type="submit" value="Edytuj usługi" class="btn btn-default btn-x" onclick="location.href='@Url.Action("UserProfesion", new { id = Model.UserID })'" />
+                </p>
+                <p>
+                    <input type="submit" value="Usuń profil" class="btn btn-default btn-x" onclick="location.href='@Url.Action("DeleteProfile", new { id = Model.UserID })'" />
+                </p>
+            </menu>
+            <div class="UPB-center">
+                <h3 style="padding-left:55px">Dane personalne:</h3>
+                <dl class="dl-horizontal">
+                    <dt>Imię:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
+                    <dt> Nazwisko:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
+                    <dt>Email:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt>Data urodzenia:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DateOfBirth)
+                    </dd>
+                    <dt>Telefon:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
+                </dl>
+            </div>
+            <div class="UPB-right">
+                <h4>Świadczone usługi:</h4>
+                @foreach (var item in Model.UserProfesion)
+                {
+                    if (item.UserID == item.User.UserID)
+                    {
+                        <div>@item.Services.Name</div>
+                    }
+                }
+            </div>
+        </div>
     </div>
+
+@Html.Partial("UserListAdvertisment", Model.Advertisment)
+
+
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.User_ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

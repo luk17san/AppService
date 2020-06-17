@@ -20,8 +20,8 @@ namespace TestAppService.Models
             this.Advertisment = new HashSet<Advertisment>();
         }
     
-        public int Status_ID { get; set; }
-        public string Status_Name { get; set; }
+        public int StatusID { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertisment> Advertisment { get; set; }

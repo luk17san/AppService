@@ -12,35 +12,61 @@ namespace TestAppService.Controllers
 {
     public class AdvertismentController : Controller
     {
-        private DBServiceEntities db = new DBServiceEntities();
+        private readonly DBServiceEntities db = new DBServiceEntities();
 
         
-        public ActionResult Create_Ad()
+        public ActionResult CreateAdvertisment()
         {
-            Model_QA model_QA = new Model_QA();
-            model_QA.Questions = db.Questions;
-            model_QA.Q_Answers = db.Q_Answers;
-
-            return View(model_QA);
+            ViewBag.LocationID = new SelectList(db.Location, "LocationID", "City");
+            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "Title");
+            ViewBag.UserID = new SelectList(db.User, "UserID", "FirstName");
+            return View();
         }
-        public ActionResult Success()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAdvertisment([Bind(Include = "AdvertismentID,Name,Description,AddDateTime,Budget,StatusID,LocationID,UserID")] Advertisment advertisment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Advertisment.Add(advertisment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            
+            ViewBag.LocationID = new SelectList(db.Location, "LocationID", "City", advertisment.LocationID);
+            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "Title", advertisment.StatusID);
+            ViewBag.UserID = new SelectList(db.User, "UserID", "FirstName", advertisment.UserID);
+            
+            return View(advertisment);
+        }
+
+        public ActionResult EditAdvertisment()
         {
             return View();
         }
-        public ActionResult Ad_List()
+
+        public ActionResult DeleteAdvertisment()
+        {
+            return View();
+        }
+        public ActionResult StatusAdvertisment()
+        {
+            return View();
+        }
+        public ActionResult ListAdvertisment()
         {
             var ad_list = db.Advertisment;
             return View(ad_list.ToList());
         }
-
+        /*
         public ActionResult ListQ()
         {
-            Model_QA model_QA = new Model_QA();
+            ServiceDbContext model_QA = new ServiceDbContext();
             model_QA.Questions = db.Questions;
-            model_QA.Q_Answers = db.Q_Answers;
+            model_QA.Answers = db.Answers;
 
                 return View(model_QA);
-        }
-       }
+        }*/
+    }
 }
       

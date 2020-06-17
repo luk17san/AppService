@@ -20,10 +20,8 @@ namespace TestAppService.Models
             this.Advertisment = new HashSet<Advertisment>();
         }
     
-        public int Location_ID { get; set; }
+        public int LocationID { get; set; }
         public string City { get; set; }
-        public string Postcode { get; set; }
-        public string Addresses { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertisment> Advertisment { get; set; }

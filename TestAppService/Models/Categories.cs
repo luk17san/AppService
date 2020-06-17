@@ -20,8 +20,9 @@ namespace TestAppService.Models
             this.Services = new HashSet<Services>();
         }
     
-        public int Category_ID { get; set; }
-        public string Category_Name { get; set; }
+        public int CategoryID { get; set; }
+        public string Name { get; set; }
+        public string Picture { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Services> Services { get; set; }

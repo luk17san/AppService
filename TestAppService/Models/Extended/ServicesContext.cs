@@ -9,7 +9,7 @@ namespace TestAppService.Models
     public partial class Services
     {
         public bool IsChecked { get; set; }
-        public virtual ICollection<User> User_Profesions { get; set; }
+        public virtual ICollection<User> UserProfesions { get; set; }
     }
     public class ServicesContext :DBServiceEntities
     {

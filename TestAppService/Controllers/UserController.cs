@@ -12,6 +12,7 @@ namespace TestAppService.Controllers
 {
     public class UserController : Controller
     {
+        private DBServiceEntities db = new DBServiceEntities();
         // Registration Action
         [HttpGet]
         public ActionResult Registration()
@@ -46,11 +47,15 @@ namespace TestAppService.Controllers
                 #endregion
                 user.IsEmailVerified = false;
 
-                #region // Save to Database
-                using (DBServiceEntities dc = new DBServiceEntities())
+                if (user.Tradesman==true)
                 {
-                    dc.User.Add(user);
-                    dc.SaveChanges();
+                    user.RoleID = 2;
+                }
+                #region // Save to Database
+                
+                {
+                    db.User.Add(user);
+                    db.SaveChanges();
 
                     //Send Email to User
 
@@ -75,15 +80,15 @@ namespace TestAppService.Controllers
         public ActionResult VerifyAccount(string id)
     {
         bool Status = false;
-        using (DBServiceEntities dc = new DBServiceEntities())
+        
         {
-            dc.Configuration.ValidateOnSaveEnabled = false; // This line I have added hewe to avoid
+            db.Configuration.ValidateOnSaveEnabled = false; // This line I have added hewe to avoid
                                                             // Confirm password does not mach issue on save changes 
-            var v = dc.User.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
+            var v = db.User.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
             if (v != null)
             {
                 v.IsEmailVerified = true;
-                dc.SaveChanges();
+                db.SaveChanges();
                 Status = true;
             }
             else
@@ -108,9 +113,9 @@ namespace TestAppService.Controllers
         public ActionResult Login(UserLogin login, string ReturnUrl)
         {
             string message = "";
-            using (DBServiceEntities dc = new DBServiceEntities())
+            
             {
-                var v = dc.User.Where(a => a.Email == login.Email).FirstOrDefault();
+                var v = db.User.Where(a => a.Email == login.Email).FirstOrDefault();
                 if(v !=null)
                 {
                     if (string.Compare(Crypto.Hash(login.Password),v.Password)==0)
@@ -122,7 +127,7 @@ namespace TestAppService.Controllers
                         cookie.Expires = DateTime.Now.AddMinutes(timeout);
                         cookie.HttpOnly = true;
                         Response.Cookies.Add(cookie);
-                        Session["UserId"] = dc.User.Single(x => x.Email == login.Email).User_ID;
+                        Session["UserId"] = db.User.Single(x => x.Email == login.Email).UserID;
                         if (Url.IsLocalUrl(ReturnUrl))
                         {
                             return Redirect(ReturnUrl);
@@ -155,9 +160,8 @@ namespace TestAppService.Controllers
         [NonAction]
         public bool IsEmailExist(string emailID)
         {
-            using (DBServiceEntities dc = new DBServiceEntities())
             {
-                var v = dc.User.Where(a => a.Email == emailID).FirstOrDefault();
+                var v = db.User.Where(a => a.Email == emailID).FirstOrDefault();
                 return v != null;
             }
         }

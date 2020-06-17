@@ -17,19 +17,19 @@ namespace TestAppService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Services()
         {
-            this.User_Profesion = new HashSet<User_Profesion>();
+            this.ServiceToAdvertisment = new HashSet<ServiceToAdvertisment>();
+            this.UserProfesion = new HashSet<UserProfesion>();
         }
     
-        public int Service_ID { get; set; }
-        public string Service_Name { get; set; }
-        public Nullable<int> Service_Category_ID { get; set; }
-        public Nullable<double> Service_Price { get; set; }
-        public Nullable<int> Service_PMeasurment_ID { get; set; }
+        public int ServiceID { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> CategoryID { get; set; }
+        public Nullable<double> Price { get; set; }
     
-        public virtual Ad_Services Ad_Services { get; set; }
         public virtual Categories Categories { get; set; }
-        public virtual Price_Measurment Price_Measurment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Profesion> User_Profesion { get; set; }
+        public virtual ICollection<ServiceToAdvertisment> ServiceToAdvertisment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfesion> UserProfesion { get; set; }
     }
 }

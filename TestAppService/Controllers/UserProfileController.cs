@@ -19,7 +19,7 @@ namespace TestAppService.Controllers
 {
     public class UserProfileController : Controller
     {
-        private DBServiceEntities db = new DBServiceEntities();
+        private readonly DBServiceEntities db = new DBServiceEntities();
 
         [AllowAnonymous]
         public ActionResult Index()
@@ -33,23 +33,42 @@ namespace TestAppService.Controllers
             {
                 return RedirectToAction("Login", "User");
             }
+            
             return View(db.User.Find(userid));
         }
 
-        public ActionResult UserAdvertisment()
+        public ActionResult DeleteProfile(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.User.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: u/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            User user = db.User.Find(id);
+            db.User.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult DetailsProfesion()
         {
 
-            int userid = Convert.ToInt32(Session["UserId"]);
-            if (userid == 0)
-            {
-                return RedirectToAction("Login", "User");
-            }
-
-            List<Advertisment> ad = db.Advertisment
-                .Where(s => s.Ad_User_ID == userid).ToList();
-
-            return View(ad);
+            ProfesionViewModel model = new ProfesionViewModel();
+            model.UserProfesions = db.UserProfesion.ToList();
+            return View(model);
         }
+       
         public ActionResult UserProfesion(int? id)
         {
             if (id == null)
@@ -65,18 +84,18 @@ namespace TestAppService.Controllers
             var Result = from s in db.Services
                          select new
                          {
-                             s.Service_ID,
-                             s.Service_Name,
-                             IsChecked = ((from up in db.User_Profesion
-                                         where (up.Id_Profesion == id) & (up.Id_Service == s.Service_ID)
+                             s.ServiceID,
+                             s.Name,
+                             IsChecked = ((from up in db.UserProfesion
+                                         where (up.ProfesionID == id) & (up.ServiceID == s.ServiceID)
                                          select up).Count() > 0)
                          };
 
             var MyViewModel = new UserViewModel();
 
-            MyViewModel.User_ID = id.Value;
-            MyViewModel.First_Name = user.First_Name;
-            MyViewModel.Last_Name = user.Last_Name;
+            MyViewModel.UserID = id.Value;
+            MyViewModel.FirstName = user.FirstName;
+            MyViewModel.LastName = user.LastName;
 
 
             var MyCheckBoxList = new List<CheckBoxViewModelProfesion>();
@@ -84,8 +103,8 @@ namespace TestAppService.Controllers
             {
                 MyCheckBoxList.Add(new CheckBoxViewModelProfesion
                 {
-                    Id = item.Service_ID,
-                    Name = item.Service_Name,
+                    Id = item.ServiceID,
+                    Name = item.Name,
                     IsChecked = item.IsChecked
                 });
             }
@@ -104,9 +123,9 @@ namespace TestAppService.Controllers
                 //MyProfesion.First_Name = user.First_Name;
                 //MyProfesion.Last_Name = user.Last_Name;
 
-                foreach (var item in db.User_Profesion)
+                foreach (var item in db.UserProfesion)
                 {
-                    if (item.Id_User == userid)
+                    if (item.UserID == userid)
                     {
                         db.Entry(item).State = EntityState.Deleted;
                     }
@@ -115,7 +134,7 @@ namespace TestAppService.Controllers
                 {
                     if(item.IsChecked)
                     {
-                        db.User_Profesion.Add(new User_Profesion() {  Id_User = userid, Id_Service=item.Id });
+                        db.UserProfesion.Add(new UserProfesion() {  UserID = userid, ServiceID=item.Id });
                     }
                 }
                 db.SaveChanges();
@@ -124,7 +143,50 @@ namespace TestAppService.Controllers
             
             return View(user);
         }
+        public ActionResult UserListAdvertisment()
+        {
 
+            int userid = Convert.ToInt32(Session["UserId"]);
+            if (userid == 0)
+            {
+                return RedirectToAction("Login", "User");
+            }
 
+            List<Advertisment> ad = db.Advertisment
+                .Where(s => s.UserID == userid).ToList();
+
+            return View(ad);
+        }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+        public ActionResult EditProfile(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.User.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.RoleID = new SelectList(db.Role, "RoleID", "Name", user.RoleID);
+            return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile([Bind(Include = "UserID,FirstName,LastName,Email,DateOfBirth,Phone,Password,IsEmailVerified,ActivationCode,RoleID")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.RoleID = new SelectList(db.Role, "RoleID", "Name", user.RoleID);
+            return View(user);
+        }
     }
 }

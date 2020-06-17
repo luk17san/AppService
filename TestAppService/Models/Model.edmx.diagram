@@ -4,32 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="44acd489ae1444678eebc31d0d8bdc5f" Name="Diagram1">
-        <EntityTypeShape EntityType="DBServiceModel.Ad_Services" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Advertisment" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Categories" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Location" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Price_Measurment" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Q_Answers" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Questions" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Questions_Category" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Services" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.Status" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.User" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBServiceModel.User_Profesion" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
-        <AssociationConnector Association="DBServiceModel.FK_Ad_Services_Advertisment" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Ad_Services_Services" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Advertisment_Location" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Advertisment_Status" ManuallyRouted="false" />
+      <Diagram DiagramId="421c1725310d4fbdb3f594a0d9a5de0b" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="DBServiceModel.Advertisment" Width="1.5" PointX="5.875" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Answers" Width="1.5" PointX="1.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Categories" Width="1.5" PointX="8.125" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Location" Width="1.5" PointX="8.125" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.MessageBox" Width="1.5" PointX="1.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Questions" Width="1.5" PointX="3.625" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.QuestionToAdvertisment" Width="1.5" PointX="5.875" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Role" Width="1.5" PointX="1.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Services" Width="1.5" PointX="5.875" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.ServiceToAdvertisment" Width="1.5" PointX="8.125" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.Status" Width="1.5" PointX="8.125" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.User" Width="1.5" PointX="3.625" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBServiceModel.UserProfesion" Width="1.5" PointX="3.625" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="DBServiceModel.FK_Advertisment_Location1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_Advertisment_Status1" ManuallyRouted="false" />
         <AssociationConnector Association="DBServiceModel.FK_Advertisment_User" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Services_Categories" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Services_Price_Measument" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Q_Answers_Questions" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_Questions_Questions_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_User_Profesion_Services1" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.FK_User_Profesion_User" ManuallyRouted="false" />
-        <AssociationConnector Association="DBServiceModel.Ad_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_QuestionToAdvertisment_Advertisment1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_ServiceToAdvertisment_Advertisment" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_Answers_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_Services_Categories1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_MessageBox_User" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_QuestionToAdvertisment_Questions1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_ServiceToAdvertisment_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_UserProfesion_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="DBServiceModel.FK_UserProfesion_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

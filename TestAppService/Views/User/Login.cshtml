@@ -4,7 +4,7 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<h2>Masz już konto? Zaloguj sie!</h2>
 
 
 @using (Html.BeginForm()) 
@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <strong class = "control-label col-md-2">Email: </strong>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <strong class="control-label col-md-2">Hasło: </strong>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
@@ -32,9 +32,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <strong class="control-label col-md-2">Zapamiętaj mnie </strong>
             <div class="col-md-10">
-                <div class="checkbox">
+                <div class="checkbox">                 
                     @Html.EditorFor(model => model.RememberMe)
                     @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
                 </div>
@@ -50,7 +50,7 @@
 }
 
 <div>
-    @Html.ActionLink("Registr Now", "Registration","User")
+    Niemasz konta? @Html.ActionLink("Zarejestruj się", "Registration","User") teraz.
 </div>
 
 @section Scripts {

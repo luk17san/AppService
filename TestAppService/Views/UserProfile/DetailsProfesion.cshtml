@@ -1,0 +1,9 @@
+﻿@model TestAppService.Models.Extended.ProfesionViewModel
+
+@foreach (var item in Model.UserProfesions)
+{
+    if (item.UserID==item.User.UserID)
+    {
+        <div>@item.Services.Name</div>
+    }
+}

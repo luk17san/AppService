@@ -7,9 +7,9 @@ namespace TestAppService.Models.Extended
 {
     public class UserViewModel
     {
-        public int User_ID { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
+        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public List<CheckBoxViewModelProfesion> UserVM { get; set; }
     }
 }

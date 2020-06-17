@@ -18,21 +18,27 @@ namespace TestAppService.Models
         public User()
         {
             this.Advertisment = new HashSet<Advertisment>();
-            this.User_Profesion = new HashSet<User_Profesion>();
+            this.MessageBox = new HashSet<MessageBox>();
+            this.UserProfesion = new HashSet<UserProfesion>();
         }
     
-        public int User_ID { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
+        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public string Phone { get; set; }
         public string Password { get; set; }
         public bool IsEmailVerified { get; set; }
         public System.Guid ActivationCode { get; set; }
+        public Nullable<int> RoleID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Advertisment> Advertisment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Profesion> User_Profesion { get; set; }
+        public virtual ICollection<MessageBox> MessageBox { get; set; }
+        public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfesion> UserProfesion { get; set; }
     }
 }

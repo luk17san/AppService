@@ -1,0 +1,114 @@
+﻿.navbar-inverse {
+    background-color: #337ab7;
+    border-color: #31708f;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #9d9d9d;
+    }
+
+        .navbar-inverse .navbar-brand:hover,
+        .navbar-inverse .navbar-brand:focus {
+            color: #fff;
+            background-color: #31708f;
+        }
+
+    .navbar-inverse .navbar-text {
+        color: #9d9d9d;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #000;
+    }
+body {
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; stara czcionka*/
+    font: normal .80em 'trebuchet ms', arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #e5e5e5;
+}
+
+.AdBox {
+    border: 1px solid black;
+    padding: 25px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    border-spacing: 15px;
+    
+}
+.AdLeftBox {
+    display: inline-block;
+    padding: 10px;
+    width: 50%;
+
+    margin: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.AdRightBox {
+    display: inline-block;
+    min-width: 35%;
+    padding: 5px;
+    padding-right: 25px;
+    float: right;
+    text-align: left;
+   
+}
+.form1 {
+    background-color: white;
+    margin-top: 15px;
+    align-content: center;
+    padding:10px;
+}
+.Title-text{
+    font-size:large;
+    padding-bottom: 10px;
+    text-decoration:solid;
+}
+.Add-DateTime {
+    font-size: 9px;
+    text-decoration: dashed;
+    text-align:right;
+}
+.CategoryBox {
+    height:250px;
+    width:250px;
+    text-align:center;
+
+    border: 1px solid black;
+    margin: 10px;
+    display:inline-block;
+}
+
+.btn-x {
+    min-width: 120px;
+}
+.UPB-left {
+    display: inline-block;
+    padding: 10px;
+    width: 20%;
+    margin: 20px;
+}
+.UPB-center {
+    display: inline-block;
+    min-width: 40%;
+    padding: 5px;
+    vertical-align: top;
+}
+.UPB-right {
+    display: inline-block;
+    min-width: 30%;
+    min-height:190px;
+    padding: 15px;
+    padding-top: 5px;
+    padding-right: 15px;
+    border: 1px solid black ;
+    border-radius:8px 8px;
+    margin-top: 15px;
+    vertical-align: top;
+}
+.form-textbox {
+    height:250px;
+    width:300px;
+    background-color:red;
+}

@@ -4,7 +4,7 @@
     ViewBag.Title = "Registration";
 }
 
-<h2>Registration</h2>
+<h2>Załóż konto</h2>
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
 {
@@ -26,23 +26,23 @@ else
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(model => model.First_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Imię: </strong>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.First_Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Last_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Nazwisko: </strong>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Last_Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Email: </strong>
         <div class="col-md-10">
             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -51,7 +51,7 @@ else
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Data urodzenia: </strong>
         <div class="col-md-10">
             @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
@@ -59,7 +59,15 @@ else
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Telefon: </strong>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <strong class="control-label col-md-2">Hasło: </strong>
         <div class="col-md-10">
             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
@@ -67,14 +75,14 @@ else
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Powtórz hasło: </strong>
         <div class="col-md-10">
             @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.Tradesman, htmlAttributes: new { @class = "control-label col-md-2" })
+        <strong class="control-label col-md-2">Czy jesteś wykonawcą: </strong>
         <div class="col-md-10">
             <div class="checkbox">
                 @Html.EditorFor(model => model.Tradesman)
@@ -85,7 +93,7 @@ else
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Zarejestruj" class="btn btn-default" />
         </div>
     </div>
 </div>
@@ -101,7 +109,7 @@ else
 
 
 <div>
-    @Html.ActionLink("Login", "Login")
+    Jeśli posiadasz już konto @Html.ActionLink("Zaloguj", "Login")!
 </div>
 
 @section Scripts {

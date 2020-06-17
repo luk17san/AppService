@@ -21,25 +21,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Usługi", "ListCategories", "ListServices")</li>
-                    <li>@Html.ActionLink("Ad", "Ad_List", "Advertisment")</li>
-                    <li>@Html.ActionLink("Control", "UserProfesion", "UserProfile")</li>
+                    <li>@Html.ActionLink("Ogłoszenia", "ListAdvertisment", "Advertisment")</li>
+                    <li>@Html.ActionLink("Usługi", "ListCategories", "Services")</li>
+                    <li>@Html.ActionLink("Wykonawcy", "ListTradesman", "Tradesman")</li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Registration", "Registration", "User")</li>
+                    
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@User.Identity.Name</li>
-                        <li>@Html.ActionLink("Logout","Logout", "User")</li>
+                        <li>@Html.ActionLink("Wyloguj","Logout", "User")</li>
                     }
                     else
-                    {
-                        <li>@Html.ActionLink("Login", "Login", "User")</li>
+                    {   
+                        <li>@Html.ActionLink("Rejestracja", "Registration", "User")</li>
+                        <li>@Html.ActionLink("Zaloguj", "Login", "User")</li>
                     }
 
-                    <li>@Html.ActionLink("Profile", "Profile", "UserProfile")</li>
+                    <li>@Html.ActionLink("Profil", "Profile", "UserProfile")</li>
 
 
                 </ul>

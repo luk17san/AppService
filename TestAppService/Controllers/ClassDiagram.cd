@@ -1,45 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical" MembersFormat="NameAndType">
-  <Class Name="TestAppService.Models.DBServiceEntities">
-    <Position X="1" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>hAABhAAEAAAAAAAAQAIAAAAAEAAAEAAEAAAAEAAgAAA=</HashCode>
-      <FileName>Models\Model.Context.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TestAppService.Models.Ad_Services">
-    <Position X="11.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAAAgAAAAAAAIAAAAAAAAgAAA=</HashCode>
-      <FileName>Models\Ad_Services.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Services" />
-      <Property Name="Advertisment" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="TestAppService.Models.Advertisment">
-    <Position X="3.25" Y="1.75" Width="1.5" />
+    <Position X="13.5" Y="8" Width="2" />
     <Members>
       <Method Name="Advertisment" Hidden="true" />
     </Members>
+    <AssociationLine Name="QuestionToAdvertisment" Type="TestAppService.Models.QuestionToAdvertisment" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="8.203" />
+        <Point X="11.125" Y="8.203" />
+        <Point X="11.125" Y="7.488" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.677" Y="0.424" Height="0.182" Width="1.922" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AABBAABEAABAAAAAQAMCAQAAAAAIAAAEAAAAAAAEAAA=</HashCode>
+      <HashCode>AAABAAgECAQgAAAAAAIAAAwIAAgAAAAAAABAAAAAgAA=</HashCode>
       <FileName>Models\Advertisment.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="User" />
-      <Property Name="Status" />
       <Property Name="Location" />
+      <Property Name="Status" />
+      <Property Name="User" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Questions" />
+      <Property Name="QuestionToAdvertisment" />
+      <Property Name="ServiceToAdvertisment" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="TestAppService.Models.Categories">
-    <Position X="7.25" Y="0.5" Width="1.5" />
+  <Class Name="TestAppService.Models.Answers">
+    <Position X="17.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAQAEAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Answers.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Questions" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Categories">
+    <Position X="11.75" Y="13.25" Width="1.5" />
+    <Members>
+      <Method Name="Categories" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Services" Type="TestAppService.Models.Services">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.186" Y="-0.622" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAAAgAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Categories.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -47,120 +58,188 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TestAppService.Models.Location">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="17.25" Y="8.25" Width="1.75" />
     <Members>
       <Method Name="Location" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAAAAIAEAAgAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAACAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
       <FileName>Models\Location.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Advertisment" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="TestAppService.Models.Price_Measurment">
-    <Position X="13" Y="1.75" Width="1.5" />
-    <Members>
-      <Method Name="Price_Measurment" Hidden="true" />
-    </Members>
+  <Class Name="TestAppService.Models.MessageBox">
+    <Position X="17" Y="12" Width="2" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Price_Measurment.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Services" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="TestAppService.Models.Q_Answers">
-    <Position X="14.75" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAGAAAAAAAAAAEAAAAAAAAQAEAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Extended\Q_Answers.cs</FileName>
+      <HashCode>AAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAREAIIAAAAA=</HashCode>
+      <FileName>Models\MessageBox.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Questions" />
+      <Property Name="User" />
     </ShowAsAssociation>
   </Class>
   <Class Name="TestAppService.Models.Questions">
-    <Position X="16.5" Y="1.75" Width="1.5" />
+    <Position X="13.5" Y="6" Width="1.75" />
     <Members>
       <Method Name="Questions" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>hAAABAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAACAAgAAA=</HashCode>
+      <HashCode>BAAAAAAAAAQAAAAAAAAAAAQAAAAAAAAAQAAAAACAAAA=</HashCode>
       <FileName>Models\Questions.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Questions_Category" />
-      <Property Name="Advertisment" />
-    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Q_Answers" />
+      <Property Name="Answers" />
+      <Property Name="QuestionToAdvertisment" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="TestAppService.Models.Questions_Category">
-    <Position X="13.75" Y="5.75" Width="1.5" />
-    <Members>
-      <Method Name="Questions_Category" Hidden="true" />
-    </Members>
+  <Class Name="TestAppService.Models.QuestionToAdvertisment">
+    <Position X="9.5" Y="6" Width="2" />
+    <AssociationLine Name="Advertisment" Type="TestAppService.Models.Advertisment" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10" Y="7.488" />
+        <Point X="10" Y="8.406" />
+        <Point X="13.5" Y="8.406" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.121" Y="0.291" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAEAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Questions_Category.cs</FileName>
+      <HashCode>BAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAEAAAAAAAgAAA=</HashCode>
+      <FileName>Models\QuestionToAdvertisment.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
+    <ShowAsAssociation>
+      <Property Name="Advertisment" />
       <Property Name="Questions" />
-    </ShowAsCollectionAssociation>
+    </ShowAsAssociation>
   </Class>
   <Class Name="TestAppService.Models.Services">
-    <Position X="9" Y="2.25" Width="1.5" />
+    <Position X="9.5" Y="11" Width="1.75" />
     <Members>
       <Method Name="Services" Hidden="true" />
+      <Property Name="UserProfesions" Hidden="true" />
     </Members>
+    <AssociationLine Name="Categories" Type="TestAppService.Models.Categories" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="12.587" />
+        <Point X="12.312" Y="12.587" />
+        <Point X="12.312" Y="13.25" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="UserProfesion" Type="TestAppService.Models.UserProfesion">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.987" Y="0.158" Height="0.182" Width="1.67" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="ServiceToAdvertisment" Type="TestAppService.Models.ServiceToAdvertisment">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.884" Y="0.431" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAgAAAACAAAAAAQAAAAAAAIAAAEQgAAAACAAAABAA=</HashCode>
+      <HashCode>AAAAACACASAAAAAAAEAAAAQAACgAEAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Extended\ServicesContext.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Property Name="UserProfesions" />
       <Property Name="Categories" />
-      <Property Name="Ad_Services" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="User_Profesion" />
-      <Property Name="User_Profesions" />
+      <Property Name="ServiceToAdvertisment" />
+      <Property Name="UserProfesion" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.ServiceToAdvertisment">
+    <Position X="9.5" Y="8.75" Width="1.75" />
+    <AssociationLine Name="Services" Type="TestAppService.Models.Services">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.68" Y="0.425" Height="0.182" Width="1.472" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAAAACAAAAAAgAAAAAAAAAAAAAAAAAAAAABAAAAgAAA=</HashCode>
+      <FileName>Models\ServiceToAdvertisment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Advertisment" />
+      <Property Name="Services" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="TestAppService.Models.Status">
-    <Position X="3.25" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAACAAgAAA=</HashCode>
-      <FileName>Models\Status.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Advertisment" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="TestAppService.Models.User">
-    <Position X="5.25" Y="2.25" Width="1.5" />
+    <Position X="17.5" Y="10.25" Width="1.5" />
     <Members>
-      <Method Name="User" Hidden="true" />
+      <Method Name="Status" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAgAAiACAAAAAAAAAEgAABAAAQAgACAABAAAAgIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestAppService.Models.User">
+    <Position X="13.5" Y="12.5" Width="2" />
+    <Members>
+      <Property Name="Advertisment" Hidden="true" />
+      <Property Name="Services" Hidden="true" />
+      <Method Name="User" Hidden="true" />
+      <Property Name="UserProfesions" Hidden="true" />
+    </Members>
+    <AssociationLine Name="MessageBox" Type="TestAppService.Models.MessageBox" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="14.013" />
+        <Point X="16.25" Y="14.013" />
+        <Point X="16.25" Y="13.875" />
+        <Point X="17" Y="13.875" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-1.664" Y="-0.502" Height="0.182" Width="3.061" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="UserProfesion" Type="TestAppService.Models.UserProfesion" FixedFromPoint="true">
+      <Path>
+        <Point X="13.5" Y="15.562" />
+        <Point X="11" Y="15.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.148" Y="-0.46" Height="0.182" Width="3.562" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAAAAEIKACAAAAAAEEAEAAgAACAQAgACAAAAIAAgIAg=</HashCode>
       <FileName>Models\Extended\User.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Role" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="UserServices" />
-      <Property Name="User_Profesion" />
-      <Property Name="Advertisment" />
+      <Property Name="MessageBox" />
+      <Property Name="UserProfesion" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="TestAppService.Models.User_Profesion">
-    <Position X="9.25" Y="6" Width="1.5" />
+  <Class Name="TestAppService.Models.UserProfesion">
+    <Position X="9.5" Y="14.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAgAAA=</HashCode>
-      <FileName>Models\User_Profesion.cs</FileName>
+      <HashCode>gAABACAAAAAAAAEAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserProfesion.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Services" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TestAppService.Models.Role">
+    <Position X="17.5" Y="14.5" Width="1.5" />
+    <Members>
+      <Method Name="Role" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAABAAIAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="User" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
