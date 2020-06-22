@@ -1,0 +1,13 @@
+﻿@model IEnumerable<TestAppService.Models.Questions>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+        @foreach (var item in Model)
+        {
+            @Html.DisplayFor(modelItem => item.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownList("AnswerID", null, htmlAttributes: new { @class = "form-control" })
+        }
+

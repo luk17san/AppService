@@ -9,9 +9,11 @@ namespace TestAppService.Models.ViewModel
     {
         public IEnumerable<Answers> AnswersIE { get; set; }
         public IEnumerable<Questions> QuestionsIE { get; set; }
-        public IEnumerable<Advertisment> Advertisments { get; set; }
-        public User User { get; set; }
+        public IEnumerable<Advertisment> AdvertismentsIE { get; set; }
+        public Advertisment Advertisments { get; set; }
+        public User Users { get; set; }
         public Answers Answers { get; set; }
-        public Answers Questions { get; set; }
+        public Questions Questions { get; set; }
+
     }
 }

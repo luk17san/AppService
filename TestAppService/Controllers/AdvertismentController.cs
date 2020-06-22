@@ -20,6 +20,7 @@ namespace TestAppService.Controllers
             ViewBag.LocationID = new SelectList(db.Location, "LocationID", "City");
             ViewBag.StatusID = new SelectList(db.Status, "StatusID", "Title");
             ViewBag.UserID = new SelectList(db.User, "UserID", "FirstName");
+
             return View();
         }
         [HttpPost]
@@ -57,6 +58,14 @@ namespace TestAppService.Controllers
         {
             var ad_list = db.Advertisment;
             return View(ad_list.ToList());
+        }
+
+        public ActionResult ListQuestion()
+        {
+            List<Questions> list = db.Questions.ToList();
+            ViewBag.AnswerID = new SelectList(db.Answers, "AnswerID", "Name");
+            return View(list);
+
         }
         /*
         public ActionResult ListQ()

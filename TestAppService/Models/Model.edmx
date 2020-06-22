@@ -24,7 +24,6 @@
           </Key>
           <Property Name="AnswerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="QuestionID" Type="int" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -58,7 +57,7 @@
           </Key>
           <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="200" Nullable="false" />
-          <Property Name="QCategoryID" Type="int" />
+          <Property Name="AnswerID" Type="int" />
         </EntityType>
         <EntityType Name="QuestionToAdvertisment">
           <Key>
@@ -168,18 +167,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Answers_Questions">
-          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
-          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Questions">
-              <PropertyRef Name="QuestionID" />
-            </Principal>
-            <Dependent Role="Answers">
-              <PropertyRef Name="QuestionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MessageBox_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="MessageBox" Type="Self.MessageBox" Multiplicity="*" />
@@ -189,6 +176,18 @@
             </Principal>
             <Dependent Role="MessageBox">
               <PropertyRef Name="ReciverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Answers">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answers">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="AnswerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -315,13 +314,13 @@
             <End Role="User" EntitySet="User" />
             <End Role="Advertisment" EntitySet="Advertisment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
-            <End Role="Questions" EntitySet="Questions" />
-            <End Role="Answers" EntitySet="Answers" />
-          </AssociationSet>
           <AssociationSet Name="FK_MessageBox_User" Association="Self.FK_MessageBox_User">
             <End Role="User" EntitySet="User" />
             <End Role="MessageBox" EntitySet="MessageBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Answers" Association="Self.FK_Questions_Answers">
+            <End Role="Answers" EntitySet="Answers" />
+            <End Role="Questions" EntitySet="Questions" />
           </AssociationSet>
           <AssociationSet Name="FK_QuestionToAdvertisment_Advertisment1" Association="Self.FK_QuestionToAdvertisment_Advertisment1">
             <End Role="Advertisment" EntitySet="Advertisment" />
@@ -385,8 +384,7 @@
           </Key>
           <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="QuestionID" Type="Int32" />
-          <NavigationProperty Name="Questions" Relationship="Self.FK_Answers_Questions" FromRole="Answers" ToRole="Questions" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Answers" FromRole="Answers" ToRole="Questions" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -423,7 +421,8 @@
           </Key>
           <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Questions" FromRole="Questions" ToRole="Answers" />
+          <Property Name="AnswerID" Type="Int32" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Questions_Answers" FromRole="Questions" ToRole="Answers" />
           <NavigationProperty Name="QuestionToAdvertisment" Relationship="Self.FK_QuestionToAdvertisment_Questions1" FromRole="Questions" ToRole="QuestionToAdvertisment" />
         </EntityType>
         <EntityType Name="QuestionToAdvertisment">
@@ -573,15 +572,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Answers_Questions">
-          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
-          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+        <Association Name="FK_Questions_Answers">
+          <End Role="Answers" Type="Self.Answers" Multiplicity="0..1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Questions">
-              <PropertyRef Name="QuestionID" />
+            <Principal Role="Answers">
+              <PropertyRef Name="AnswerID" />
             </Principal>
-            <Dependent Role="Answers">
-              <PropertyRef Name="QuestionID" />
+            <Dependent Role="Questions">
+              <PropertyRef Name="AnswerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -704,9 +703,9 @@
             <End Role="Advertisment" EntitySet="Advertisment" />
             <End Role="ServiceToAdvertisment" EntitySet="ServiceToAdvertisment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
-            <End Role="Questions" EntitySet="Questions" />
+          <AssociationSet Name="FK_Questions_Answers" Association="Self.FK_Questions_Answers">
             <End Role="Answers" EntitySet="Answers" />
+            <End Role="Questions" EntitySet="Questions" />
           </AssociationSet>
           <AssociationSet Name="FK_Services_Categories1" Association="Self.FK_Services_Categories1">
             <End Role="Categories" EntitySet="Categories" />
@@ -762,7 +761,6 @@
               <MappingFragment StoreEntitySet="Answers">
                 <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -800,6 +798,7 @@
               <MappingFragment StoreEntitySet="Questions">
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

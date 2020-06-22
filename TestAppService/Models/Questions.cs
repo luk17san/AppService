@@ -17,15 +17,14 @@ namespace TestAppService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Questions()
         {
-            this.Answers = new HashSet<Answers>();
             this.QuestionToAdvertisment = new HashSet<QuestionToAdvertisment>();
         }
     
         public int QuestionID { get; set; }
         public string Name { get; set; }
+        public Nullable<int> AnswerID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answers> Answers { get; set; }
+        public virtual Answers Answers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionToAdvertisment> QuestionToAdvertisment { get; set; }
     }
